@@ -1,2 +1,2 @@
-# ava-logistics-training
+# logistics-training
 For AVA logistics new hires. 
