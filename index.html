@@ -79,12 +79,12 @@
             transform: translateY(0);
         }
 
-        /* Styles for locked modules */
-        .module-card.locked {
-            opacity: 0.5;
-            cursor: not-allowed;
-            pointer-events: none; /* Prevents click events */
-            filter: grayscale(100%);
+        /* Specific style for the hamburger menu image */
+        #module1-content .hamburger-menu-image {
+            max-width: 250px; /* Made smaller */
+            display: block; /* Ensures margin auto works for centering */
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
@@ -127,7 +127,7 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Training Modules</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Module Card: The Basics -->
-                <div id="module-basics-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card" data-target-module="logistics-basics-content" data-module-index="0">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('logistics-basics-content');">
                     <h3 class="text-2xl font-semibold text-teal-700 mb-3">🚛 The Basics</h3>
                     <p class="text-gray-700">
                         Understand the fundamental role of a freight broker and the basic freight flow cycle.
@@ -135,7 +135,7 @@
                 </div>
 
                 <!-- Module Card: Module 1: LAVA -->
-                <div id="module-1-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module1-content" data-module-index="1">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module1-content');">
                     <h3 class="text-2xl font-semibold text-purple-700 mb-3">🚀 Module 1: LAVA</h3>
                     <p class="text-gray-700">
                         Explore the core functionalities of LAVA software, your central hub for all operations.
@@ -143,7 +143,7 @@
                 </div>
 
                 <!-- Module Card: Module 2: Finding a Customer -->
-                <div id="module-2-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module2-content" data-module-index="2">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module2-content');">
                     <h3 class="text-2xl font-semibold text-red-700 mb-3">🎯 Module 2: Finding a Customer</h3>
                     <p class="text-gray-700">
                         Learn strategies for identifying leads and building strong customer relationships.
@@ -151,7 +151,7 @@
                 </div>
 
                 <!-- Module Card: Module 3: Finding a Carrier -->
-                <div id="module-3-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module3-content" data-module-index="3">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module3-content');">
                     <h3 class="text-2xl font-semibold text-green-700 mb-3">🚚 Module 3: Finding a Carrier</h3>
                     <p class="text-gray-700">
                         Discover methods for finding reliable carriers and utilizing load boards effectively.
@@ -159,7 +159,7 @@
                 </div>
 
                 <!-- Module Card: Module 4: Getting a Rate -->
-                <div id="module-4-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module4-content" data-module-index="4">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module4-content');">
                     <h3 class="text-2xl font-semibold text-indigo-700 mb-3">💲 Module 4: Getting a Rate</h3>
                     <p class="text-gray-700">
                         Master the art of rate negotiation and understanding market dynamics.
@@ -167,7 +167,7 @@
                 </div>
 
                 <!-- Module Card: Module 5: Quotes -->
-                <div id="module-5-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module5-content" data-module-index="5">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module5-content');">
                     <h3 class="text-2xl font-semibold text-yellow-700 mb-3">📋 Module 5: Quotes</h3>
                     <p class="text-gray-700">
                         Understand how to build accurate quotes and leverage load board features for pricing.
@@ -175,7 +175,7 @@
                 </div>
 
                 <!-- Module Card: Module 6: Covering Pending Loads -->
-                <div id="module-6-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module6-content" data-module-index="6">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module6-content');">
                     <h3 class="text-2xl font-semibold text-cyan-700 mb-3">✅ Module 6: Covering Pending Loads</h3>
                     <p class="text-gray-700">
                         Learn the crucial steps involved in confirming and managing booked loads with carriers.
@@ -183,7 +183,7 @@
                 </div>
 
                 <!-- Module Card: Module 7: Vetting Carriers -->
-                <div id="module-7-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module7-content" data-module-index="7">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module7-content');">
                     <h3 class="text-2xl font-semibold text-gray-700 mb-3">🛡️ Module 7: Vetting Carriers</h3>
                     <p class="text-gray-700">
                         A comprehensive guide to thoroughly vetting carriers for safety and reliability.
@@ -191,7 +191,7 @@
                 </div>
 
                 <!-- Module Card: Module 8: Trafficking and Managing Freight -->
-                <div id="module-8-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module8-content" data-module-index="8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module8-content');">
                     <h3 class="text-2xl font-semibold text-orange-700 mb-3">📊 Module 8: Trafficking and Managing Freight</h3>
                     <p class="text-gray-700">
                         Understand active load management, pre-pickup, in-transit, and delivery procedures.
@@ -199,7 +199,7 @@
                 </div>
 
                 <!-- Module Card: Module 9: Building Relationships -->
-                <div id="module-9-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module9-content" data-module-index="9">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module9-content');">
                     <h3 class="text-2xl font-semibold text-purple-700 mb-3">🤝 Module 9: Building Relationships</h3>
                     <p class="text-gray-700">
                         Strategies for fostering strong, long-term relationships with carriers.
@@ -207,7 +207,7 @@
                 </div>
 
                 <!-- Module Card: Module 10: Additional Delivery Checks -->
-                <div id="module-10-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module10-content" data-module-index="10">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer" onclick="showSection('module10-content');">
                     <h3 class="text-2xl font-semibold text-green-700 mb-3">🔒 Module 10: Additional Delivery Checks</h3>
                     <p class="text-gray-700">
                         Learn about two-factor authentication and final verification steps for deliveries.
