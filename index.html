@@ -41,7 +41,6 @@
             height: auto; /* Maintain aspect ratio */
             z-index: 2; /* Ensure logo is above the overlay */
         }
-        /* Removed .hero-logo-right CSS rule */
         .hero-content {
             position: relative; /* Bring content above the overlay */
             z-index: 2; /* Ensure content is on top */
@@ -79,6 +78,14 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Styles for locked modules */
+        .module-card.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            pointer-events: none; /* Prevents click events */
+            filter: grayscale(100%);
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased">
@@ -109,68 +116,103 @@
                 <p class="text-xl mb-8">
                     Your Journey Starts Here
                 </p>
-                <button class="bg-white text-teal-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg" onclick="showSection('experience-selection');">
+                <button class="bg-white text-teal-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg" onclick="showSection('logistics-basics-content');">
                     Begin Training
                 </button>
             </div>
-
-            <!-- Removed Logo on the right -->
         </section>
 
         <!-- Training Modules Section -->
-        <main class="container mx-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Module Card 1: Safety Procedures -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Safety Procedures & Compliance</h3>
-                <p class="text-gray-700">
-                    Learn essential safety protocols, hazard identification, and regulatory compliance to ensure a secure working environment.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
-            </div>
+        <main class="container mx-auto p-4">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Training Modules</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Module Card: The Basics -->
+                <div id="module-basics-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card" data-target-module="logistics-basics-content" data-module-index="0">
+                    <h3 class="text-2xl font-semibold text-teal-700 mb-3">🚛 The Basics</h3>
+                    <p class="text-gray-700">
+                        Understand the fundamental role of a freight broker and the basic freight flow cycle.
+                    </p>
+                </div>
 
-            <!-- Module Card 2: Warehouse Operations -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Warehouse Operations & Inventory</h3>
-                <p class="text-gray-700">
-                    Understand efficient receiving, storage, picking, and packing processes, along with inventory management best practices.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
-            </div>
+                <!-- Module Card: Module 1: LAVA -->
+                <div id="module-1-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module1-content" data-module-index="1">
+                    <h3 class="text-2xl font-semibold text-purple-700 mb-3">🚀 Module 1: LAVA</h3>
+                    <p class="text-gray-700">
+                        Explore the core functionalities of LAVA software, your central hub for all operations.
+                    </p>
+                </div>
 
-            <!-- Module Card 3: Fleet Management & Driving -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Fleet Management & Safe Driving</h3>
-                <p class="text-gray-700">
-                    Covers vehicle maintenance, route optimization, defensive driving techniques, and transportation regulations.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
-            </div>
+                <!-- Module Card: Module 2: Finding a Customer -->
+                <div id="module-2-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module2-content" data-module-index="2">
+                    <h3 class="text-2xl font-semibold text-red-700 mb-3">🎯 Module 2: Finding a Customer</h3>
+                    <p class="text-gray-700">
+                        Learn strategies for identifying leads and building strong customer relationships.
+                    </p>
+                </div>
 
-            <!-- Module Card 4: Customer Service & Communication -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Customer Service & Communication</h3>
-                <p class="text-gray-700">
-                    Develop strong communication skills for interacting with clients, handling inquiries, and ensuring customer satisfaction.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
-            </div>
+                <!-- Module Card: Module 3: Finding a Carrier -->
+                <div id="module-3-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module3-content" data-module-index="3">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-3">🚚 Module 3: Finding a Carrier</h3>
+                    <p class="text-gray-700">
+                        Discover methods for finding reliable carriers and utilizing load boards effectively.
+                    </p>
+                </div>
 
-            <!-- Module Card 5: Supply Chain Fundamentals -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Supply Chain Fundamentals</h3>
-                <p class="text-gray-700">
-                    An overview of the entire supply chain, from sourcing to delivery, and how each role contributes to its success.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
-            </div>
+                <!-- Module Card: Module 4: Getting a Rate -->
+                <div id="module-4-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module4-content" data-module-index="4">
+                    <h3 class="text-2xl font-semibold text-indigo-700 mb-3">💲 Module 4: Getting a Rate</h3>
+                    <p class="text-gray-700">
+                        Master the art of rate negotiation and understanding market dynamics.
+                    </p>
+                </div>
 
-            <!-- Module Card 6: Technology & Systems -->
-            <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-                <h3 class="text-2xl font-semibold text-teal-700 mb-3">Technology & Systems Overview</h3>
-                <p class="text-gray-700">
-                    Introduction to the software and hardware tools used in our logistics operations, including tracking and management systems.
-                </p>
-                <a href="#" class="inline-block mt-4 text-blue-600 hover:underline">View Module &rarr;</a>
+                <!-- Module Card: Module 5: Quotes -->
+                <div id="module-5-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module5-content" data-module-index="5">
+                    <h3 class="text-2xl font-semibold text-yellow-700 mb-3">📋 Module 5: Quotes</h3>
+                    <p class="text-gray-700">
+                        Understand how to build accurate quotes and leverage load board features for pricing.
+                    </p>
+                </div>
+
+                <!-- Module Card: Module 6: Covering Pending Loads -->
+                <div id="module-6-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module6-content" data-module-index="6">
+                    <h3 class="text-2xl font-semibold text-cyan-700 mb-3">✅ Module 6: Covering Pending Loads</h3>
+                    <p class="text-gray-700">
+                        Learn the crucial steps involved in confirming and managing booked loads with carriers.
+                    </p>
+                </div>
+
+                <!-- Module Card: Module 7: Vetting Carriers -->
+                <div id="module-7-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module7-content" data-module-index="7">
+                    <h3 class="text-2xl font-semibold text-gray-700 mb-3">🛡️ Module 7: Vetting Carriers</h3>
+                    <p class="text-gray-700">
+                        A comprehensive guide to thoroughly vetting carriers for safety and reliability.
+                    </p>
+                </div>
+
+                <!-- Module Card: Module 8: Trafficking and Managing Freight -->
+                <div id="module-8-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module8-content" data-module-index="8">
+                    <h3 class="text-2xl font-semibold text-orange-700 mb-3">📊 Module 8: Trafficking and Managing Freight</h3>
+                    <p class="text-gray-700">
+                        Understand active load management, pre-pickup, in-transit, and delivery procedures.
+                    </p>
+                </div>
+
+                <!-- Module Card: Module 9: Building Relationships -->
+                <div id="module-9-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module9-content" data-module-index="9">
+                    <h3 class="text-2xl font-semibold text-purple-700 mb-3">🤝 Module 9: Building Relationships</h3>
+                    <p class="text-gray-700">
+                        Strategies for fostering strong, long-term relationships with carriers.
+                    </p>
+                </div>
+
+                <!-- Module Card: Module 10: Additional Delivery Checks -->
+                <div id="module-10-card" class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card locked" data-target-module="module10-content" data-module-index="10">
+                    <h3 class="text-2xl font-semibold text-green-700 mb-3">🔒 Module 10: Additional Delivery Checks</h3>
+                    <p class="text-gray-700">
+                        Learn about two-factor authentication and final verification steps for deliveries.
+                    </p>
+                </div>
             </div>
         </main>
 
@@ -254,25 +296,30 @@
                 </div>
             </div>
         </section>
-    </div>
 
-    <!-- Experience Selection Section (Initially Hidden) -->
-    <section id="experience-selection" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-blue-500 text-center">
-        <h2 class="text-3xl font-bold text-blue-700 mb-6">Have you worked in logistics before?</h2>
-        <div class="flex flex-col md:flex-row justify-center gap-6">
-            <button class="bg-teal-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-teal-700 transition duration-300 shadow-lg" onclick="showSection('logistics-basics-content');">
-                No, this is my first time!
-            </button>
-            <button class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg" onclick="showSection('module1-content');">
-                Yes, I have experience.
-            </button>
-        </div>
-        <div class="text-center mt-8">
-            <button onclick="showSection('main-content');" class="text-gray-600 hover:underline">
-                Back to Welcome
-            </button>
-        </div>
-    </section>
+        <!-- New: Carrier Vetting Tool Section -->
+        <section id="carrier-vetting-tool" class="container mx-auto p-4 mt-8 bg-white rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Carrier Vetting Tool 🚛🔍</h2>
+            <p class="text-lg text-gray-700 mb-4 text-center">
+                Quickly check a carrier's approval status by entering their MC#. (Simulated response for training purposes)
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+                <input type="text" id="mcNumberInput" placeholder="Enter MC# (e.g., 123456)" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 max-w-md">
+                <button id="vetCarrierBtn" class="bg-blue-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-blue-700 transition duration-300 shadow-md">
+                    Vet Carrier
+                </button>
+            </div>
+            <div id="vettingResult" class="bg-gray-50 p-6 rounded-md border border-gray-200 min-h-[100px] flex items-center justify-center text-gray-600 text-center">
+                Enter an MC# to check carrier status.
+            </div>
+            <div id="vettingLoadingIndicator" class="hidden text-center mt-4 text-blue-600 font-semibold">
+                Vetting carrier...
+            </div>
+            <div id="vettingErrorOutput" class="hidden text-center mt-4 text-red-600 font-semibold">
+                An error occurred during vetting.
+            </div>
+        </section>
+    </div>
 
     <!-- The Basics Content Section (Initially Hidden) -->
     <section id="logistics-basics-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-teal-500">
@@ -396,7 +443,7 @@
             <div class="flex items-center mb-4">
                 <span class="text-teal-600 text-2xl font-bold mr-2">🛠️</span>
                 <h3 class="text-2xl font-semibold text-gray-800">Core Tools You’ll Use as a Broker</h3>
-            </div>
+            </h3>
             <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
                 <li>
                     ✅ <strong>LAVA:</strong> Software to manage loads, track shipments, and handle billing.
@@ -417,7 +464,7 @@
             <div class="flex items-center mb-4">
                 <span class="text-teal-600 text-2xl font-bold mr-2">💰</span>
                 <h3 class="text-2xl font-semibold text-gray-800">How AVA Makes Money</h3>
-            </div>
+            </h3>
             <p class="text-lg text-gray-700 mb-4">
                 As a broker, our profit comes from the spread between:
             </p>
@@ -434,9 +481,12 @@
         </div>
 
 
-        <div class="text-center mt-8">
-            <button onclick="showSection('main-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
-                Back to Training Hub
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module1-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 1
             </button>
         </div>
     </section>
@@ -445,17 +495,9 @@
     <section id="module1-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-purple-500">
         <div class="flex items-center justify-center mb-4">
             <span class="text-purple-600 text-xl font-bold mr-2">🚀</span>
-            <h2 class="text-4xl font-bold text-purple-700 text-center">Module 1: Advanced Logistics Concepts</h2>
+            <h2 class="text-4xl font-bold text-purple-700 text-center">Module 1: LAVA</h2>
         </div>
-        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
-            Welcome to Module 1! This section is designed for those with prior logistics experience. Here, we'll dive deeper into more advanced concepts and strategies.
-        </p>
-        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
-            <li>Advanced Rate Negotiation Techniques</li>
-            <li>Risk Management in Transportation</li>
-            <li>Supply Chain Optimization Strategies</li>
-            <li>Understanding Incoterms in Detail</li>
-        </ul>
+        <!-- Removed the introductory paragraph -->
 
         <div class="mt-8">
             <div class="flex items-center mb-4">
@@ -465,14 +507,448 @@
             <p class="text-lg text-gray-700 mb-4">
                 This is LAVA, where most of your job is spent. It's your central hub for managing all aspects of your work as a freight broker.
             </p>
-            <!-- Updated image source to use the new, simplified filename -->
             <img src="lava-screenshot.png" alt="LAVA Software Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=LAVA+Screenshot+Missing';">
             <p class="text-lg text-gray-700">
                 Here is where you keep track of your loads, quotes, customers, carriers, leads, typical locations AVA uses, employees, and analytics.
             </p>
+
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Load</h4>
+                <p class="text-gray-700">
+                    In the Load tab of LAVA, this is where our current and past lanes are run. As you get a load, you will need a carrier. You will then find a carrier, and once you do this you will get all of their information and put it into LAVA. This tab helps manage all your loads and has them in one place.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Quote</h4>
+                <p class="text-gray-700">
+                    This is where you build quotes for a customer. Through LAVA, you'll get the rate of three different companies, then LAVA will average the rates so that you can communicate that with your customer. This is where you "build your quotes".
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Customer</h4>
+                <p class="text-gray-700">
+                    This is where all of our customers are in LAVA.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Carrier</h4>
+                <p class="text-gray-700">
+                    This is where you can find all of our approved carriers in LAVA. If you ever need carriers this is a good place to look, or to vet a carrier.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Lead</h4>
+                <p class="text-gray-700">
+                    This is where you find your customers. You will build leads in many different ways, then cold call in hopes of landing a customer.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Location</h4>
+                <p class="text-gray-700">
+                    This is where carriers are based out of, in case you need a regular lane run out of a city.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Employee</h4>
+                <p class="text-gray-700">
+                    This is all of the employee's contacts where you can find their email, extension, and personal phone.
+                </p>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 class="text-xl font-semibold text-gray-800 mb-2">Analytics</h4>
+                <p class="text-gray-700">
+                    This tab shows how the company is doing as a whole. This shows the profits, leads created and much more.
+                </p>
+            </div>
         </div>
 
-        <div class="text-center mt-8">
+        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <span class="text-purple-600 text-2xl font-bold mr-2">⚙️</span>
+                    <h3 class="text-2xl font-semibold text-gray-800">Legend settings and filters</h3>
+                </div>
+                <img src="Screenshot 2025-07-17 at 8.06.29 AM.png" alt="LAVA Legend Settings and Filters Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x150/cccccc/333333?text=Legend+Settings+Screenshot+Missing';">
+                <p class="text-lg text-gray-700">
+                    This section explains how to use the legend settings and filters within the LAVA software to customize your view and find specific information efficiently.
+                </p>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Legend</h4>
+                    <p class="text-gray-700">
+                        This is where you can find what all of the colors mean on the rows.
+                    </p>
+                </div>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Settings</h4>
+                    <p class="text-gray-700">
+                        This is where you can customize what your table to show what you want in order to make it more organized. You can also edit the conditions and prohibit things like cancelled loads.
+                    </p>
+                </div>
+                <div class="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <h4 class="text-xl font-semibold text-gray-800 mb-2">Filters</h4>
+                    <p class="text-gray-700">
+                        This is where you can edit what you want to see in the table. For example, if you want to only show loads for a specific customer, than you can apply that filter to only show that load.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Hamburger Menu Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex items-center mb-4">
+                    <span class="text-purple-600 text-2xl font-bold mr-2">☰</span>
+                    <h3 class="text-2xl font-semibold text-gray-800">Hamburger Menu</h3>
+                </div>
+                <img src="Screenshot 2025-07-17 at 9.11.08 AM.png" alt="Hamburger Menu Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=Hamburger+Menu+Missing';">
+                <p class="text-lg text-gray-700">
+                    This menu provides quick access to various employee, carrier, and training resources, along with maps for active carriers and customers.
+                </p>
+            </div>
+        </div>
+
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module2-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 2
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 2 Section (Initially Hidden) -->
+    <section id="module2-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-red-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-red-600 text-xl font-bold mr-2">🎯</span>
+            <h2 class="text-4xl font-bold text-red-700 text-center">Module 2: Finding a Customer</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            We find Customers from solicitations (and referrals). To manage our Customer solicitations we create Leads.
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>One way to find a Lead is to look for businesses near our Shippers and Receivers.</li>
+            <li>Another way to find a Lead is to look for businesses in the same industry as our other Customers.</li>
+        </ul>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            When we’ve engaged a Lead and they have asked for a Quote, we will need to find a Carrier and get some rates.
+        </p>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module3-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 3
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 3 Section (Initially Hidden) -->
+    <section id="module3-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-green-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-green-600 text-xl font-bold mr-2">🚚</span>
+            <h2 class="text-4xl font-bold text-green-700 text-center">Module 3: Finding a Carrier</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Finding reliable carriers is essential for successful freight brokering. Here's how we approach it:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>The Carrier Database in LAVA lists all Carriers by their home base.</li>
+            <li>Filter Loads in LAVA to find relevant Carriers who might want our freight.</li>
+            <li>Search trucks and post loads on DAT and ITS (See Using Load Boards for details).</li>
+            <li>Carrier 411 (See Vetting Carriers for details).</li>
+            <li>Google</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module4-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 4
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 4 Section (Initially Hidden) -->
+    <section id="module4-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-indigo-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-indigo-600 text-xl font-bold mr-2">💲</span>
+            <h2 class="text-4xl font-bold text-indigo-700 text-center">Module 4: Getting a Rate</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Getting the right rate is a key skill for freight brokers. Here’s what you need to know:
+        </p>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Get the Load Details:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li><strong>Equipment Type</strong></li>
+            <li><strong>Zip Codes / City and State</strong></li>
+            <li><strong>Weight and Commodity</strong></li>
+            <li><strong>Target Rate</strong></li>
+        </ul>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">If the Sales Rep can get more information:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Pick Up and Delivery Windows (Can it pick up all week? All month?)</li>
+            <li>Can it go on a Reefer? On a Step Deck? On a HotShot?</li>
+            <li>Could anything radically alter the rate (Hazmat, Over-Dimensional, Job-Site Delivery)</li>
+        </ul>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            The time needed to get a quote back to a Customer will vary by account. Some Customers are looking for the cheapest rate and will wait for hours for someone to find an option they like. Others will take the first option. If you are unfamiliar with an account, always ask the Sales Rep how quickly they need pricing back. If they do not have a preference, default to the 30 minute rule.
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Look at the lane on Google Maps - note mileage, proximity to big cities, ports, etc.</li>
+            <li>Look for lane history in LAVA and call a few past carriers to see if they are available.</li>
+            <li>Look at available trucks on the boards - DAT / ITS - and make outbound calls / emails.</li>
+            <li>Get a sense of the rate you want to pay and get on the phone.</li>
+            <li>Start low! (Ex. If the target rate in the load says $1000, start at $800 - you may get lucky)</li>
+            <li>End with an odd number. (Ex. “I only have $936 in this load”) it sometimes works in unexpected ways.</li>
+            <li>Say a rate, then stop talking. Let the carrier respond. This can force the carrier to negotiate with themselves and get you a better price.</li>
+            <li>Be confident. “The load IS paying X” not “I am trying to be around X”. Negotiate like you are willing to walk away, even if you are not (don’t lose the carrier if you really need them). If they know you need them you are not negotiating from a position of strength, thus losing money right off the bat.</li>
+            <li>Know the load details (this will help with confidence). Sell the best load details (Ex. It’s light. The Receiver’s open 24/7. No driver touch. We have a reload coming out of that area.)</li>
+            <li>Learn as you go. Identify objections (weather, location, etc) and address them on the next call before the carrier brings it up. (Ex. Hello, I have a load from Reno to Sac. It’s snowing over the pass a bit, so I have a little extra on the rate to help your driver out. We’re at $800.) This will put you in a position of strength from the start.</li>
+            <li>Don’t immediately settle when you hear your price on a call in!!! (Ex. If you want to pay $1000 on a load and a carrier calls in and says “I’ll run this for a thousand”, say “We’re at $800.” Don’t lose the truck over this, but always take a shot at a better price).</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module5-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 5
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 5 Section (Initially Hidden) -->
+    <section id="module5-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-yellow-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-yellow-600 text-xl font-bold mr-2">📋</span>
+            <h2 class="text-4xl font-bold text-yellow-700 text-center">Module 5: Quotes</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Generating accurate and competitive quotes is fundamental to securing business. Here's how we approach it, especially when utilizing load boards:
+        </p>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Using the Load Boards - DAT (Dial-A-Truck) / ITS (Internet Truckstop):</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Utilize the search feature. Email good matches and call Carriers with relevant area codes (home base). On DAT leave notes on the trucks you have called so we don’t do double the work.</li>
+            <li>Post on each load board (we will go over examples)</li>
+            <li>Don’t post the exact lane (Ex. If we have Moundhouse, NV to Madera, CA we would want to post Reno, NV to Fresno, CA) This will bring in more calls because people know the towns of Reno and Fresno, while they might not know places like Moundhouse, NV or Madera, CA. This also helps protect our customers in smaller towns.</li>
+            <li>Identify market trends as you’re using the boards. You will be able to get a sense of capacity (no calls = few carriers / phone is blowing up = many carriers). Communicate market dynamics to your salesperson.</li>
+            <li>Hot Prospects. This is a feature on Truckstop that you can use if you are striking out. It will give you a lot of options of people who have done this lane or have posted on this lane. It's also a great tool to build long term capacity in areas.</li>
+            <li>Different ways of posting can increase call in’s. If you are struggling, post from places that might be 150 miles away from the actual pickup. Also post it to a more desirable location. Even if they don’t want it you now have the ability to talk them into it.</li>
+            <li>Expanding filters. When searching for trucks don’t limit yourself to 100-150 miles. We have deadheaded trucks 1000+ miles before.</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module6-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 6
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 6 Section (Initially Hidden) -->
+    <section id="module6-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-cyan-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-cyan-600 text-xl font-bold mr-2">✅</span>
+            <h2 class="text-4xl font-bold text-cyan-700 text-center">Module 6: Covering Pending Loads - You booked a Carrier</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Once you've successfully booked a carrier for a load, there are crucial steps to ensure a smooth operation:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>As you agree to work with a Carrier, check their MC# on Carrier411, RMIS/HWY, and in LAVA. If the Carrier is not set up, send them an email with a link to www.avacarriers.com. (SEE VETTING CARRIERS)</li>
+            <li>Confirm load details over the phone / email. Get contact information and the current location of the driver - city, state, and status. For same day / next day loads, check the feasibility of the driver’s pickup ETA (use Google Maps).</li>
+            <li>Review paperwork - ensure that everything is accurate, (i.e. rate, equipment type, PU and DL times). If there are documents specific to a location or customer that you need to send to the carrier, make sure they are included here.</li>
+            <li>Use LAVA to send the rate confirmation and tender. If there is something you want to draw attention to, you can add a note to the top of the email and highlight it.</li>
+            <li>Let Dispatch know you will be calling the Driver within the next few minutes.</li>
+            <li>Call the Driver to confirm the details of the shipment. Acquire his/her current location (city, state, and status). Review the specific expectations of the load with the driver.</li>
+            <li>If you have arranged MacroPoint usage, ask the driver if they will get on it at this time, and listen for their reaction.</li>
+            <li>Review Shippers and Receivers / confirm appointment times and shipping hours. Make sure the Salesperson has added contacts at shipper and receiver. Please check with your salesperson before calling shippers or receivers.</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module7-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 7
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 7 Section (Initially Hidden) -->
+    <section id="module7-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-gray-700">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-gray-600 text-xl font-bold mr-2">🛡️</span>
+            <h2 class="text-4xl font-bold text-gray-700 text-center">Module 7: Vetting Carriers</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Thoroughly vetting carriers is paramount to ensure the safety and reliability of our operations. Here's a comprehensive guide:
+        </p>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">DO NOT GET A LOAD STOLEN:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Check the Motor Carrier Number (MC) on Saferys/RMIS/Carrier411/LAVA. There are many companies with the same or similar company name - MC’s are very specific identifiers.</li>
+            <li>Look at Safer -You can click the FMCSA link in their LAVA cards and it will take you straight to the FMCSA website that has their official number listed. With theft running wild in the industry it will go a long way to protect AVA by either preventing us from using the wrong carrier, or by proving our due diligence if something nefarious does happen. If a carrier is not in LAVA and you want to verify their info, you can simply check the MC on Safer via this link. If their operating status says “Approved” then they are able to legally run freight for you. If it says “Inactive” or “Not Authorized” you can UNDER NO CIRCUMSTANCE tender them a load.</li>
+            <li>Confirm that the phone number they are calling from matches their official number listed in Safer. If it doesn’t, YOU MUST call the number in Safer and verify the person you are speaking to is authorized to book freight for that company.</li>
+            <li>Just because a Carrier was good doesn't mean they are good. Do a fresh check (Ex. look at RMIS/HWY/Carrier411. Look at notes and colors in LAVA).</li>
+            <li>In LAVA if a carrier is denied, they will not be able to be put on the load. If they are conditional, look at the reason. If it is a service issue, check with your sales rep before putting them on a load. If you use them, YOU MUST put the driver on Macro Point.</li>
+            <li>ALWAYS LOOK CARRIERS UP BY MC OR DOT NUMBER. DO NOT LOOK THEM UP BY NAME.</li>
+        </ul>
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">On Carrier 411 check:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>How many trucks and inspections they have. We need at least 1 inspection. If they only have 1 truck and you can hear 20 people talking in the background of the caller, this is a red flag.</li>
+            <li>How long their common or contract authority has been maintained. We need at least 6 months.</li>
+            <li>Does the carrier have broker authority? If so, ask if they will be using a company truck. You can require that they send you pictures of the truck they use to make sure they are not double brokering the load.</li>
+            <li>Does the company frequently change their business address? Has their address recently changed? These can be red flags.</li>
+            <li>Check their address on google maps. Is it something weird like a Taco Bell? Residential addresses aren’t uncommon.</li>
+            <li>Residential addresses aren't uncommon, but should be handled with extreme caution. A small carrier (1-2) trucks out a house makes sense. A large carrier out of a house makes no sense. Either way, you must check with management if a carrier is operating from a residential address.</li>
+            <li>Does the carrier have an online presence? A website and google reviews are good signs you are working with a legitimate carrier.</li>
+            <li>Look at delivery time vs miles and make sure it is feasible. (Ex. If we have a load picking up in Reno, NV Monday morning at 09:00 and delivering to El Paso, TX the following day at 14:00 we would need to book team drivers, as a solo driver would just not make it).</li>
+            <li>Use your gut instinct. If you have a feeling a driver is going to be shady and you aren’t confident they will do a good job on your load, don’t book them.</li>
+            <li>If they have freight guards, look at how recent the freight guard is. If the freightguard is less than a year or two old use caution. (The report will say the date and how many days old it is).</li>
+            <li>Look at how many there are. Is it just one freight guard 3 or more years ago or did it just happen?</li>
+            <li>Is there a response to it? In the freightguard it will explain the issue that caused the company to write the report. There will also be a section that gives the carrier a chance to tell their side of the story. A lot of freight guards are because of lazy brokering when these problems could have been caught sooner and been hashed out. Take the time to read the report!</li>
+            <li>How many power units does the company have? Look at this number if a company has 5 reports but 1,500 power units, it could be just one bad dispatcher</li>
+            <li>If you are unsure about using a carrier because of their freight guards, put them on macropoint. If they are not good with this request DO NOT USE THEM.</li>
+            <li>Ask open ended questions, do not ask questions that lead dispatchers to telling you what you want to hear. Ask the proper qualifying questions when booking trucks and identify answers to see if they are viable.</li>
+            <li>To perform a reverse image look up, go to Google Images, click the camera icon in the search bar, then either upload an image from your computer or paste the image URL to find where that image appears online; you can also right-click on an image and select "Search Google for Image" on most browsers to initiate a reverse image search directly from a webpage.</li>
+            <li>All loads must be on MacroPoint. MacroPoint can be used as a vetting tool. If DSP or DRV won’t use MacroPoint in the age of the smartphone it is usually a red flag, and if you are on the fence about using them it could be a good tool to help you decide. We don’t even need to put them on MacroPoint, we just want to hear the reaction.</li>
+            <li>Vetting doesn’t stop after you send a tender. YOU MUST speak to all drivers. The questions you ask when dispatching your driver will help weed out service failures and otherwise sketchy situations. See “Pick Ups” below for the questions t be asked.</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module8-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 8
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 8 Section (Initially Hidden) -->
+    <section id="module8-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-orange-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-orange-600 text-xl font-bold mr-2">📊</span>
+            <h2 class="text-4xl font-bold text-orange-700 text-center">Module 8: Trafficking and Managing Freight (Freight Brokerage Support)</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Effective management of active loads is crucial for timely deliveries and customer satisfaction.
+        </p>
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Active Loads:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>You must update all loads that have your name in them as the Broker. If you are working under a Sales Rep, you must update all of the loads in their name as well. (Filter by day of and previous day to make sure nothing is missed.) Every time you talk to or attempt to talk to a driver/disp, put notes in the load (“called, no answer so I sent email for update,etc..”)</li>
+            <li>If your load is marked “Needs Attention” or “Service Critical” make those loads the first call.</li>
+            <li>If the driver / dispatcher is unable to be reached and you have tried all methods of communication, escalate the issue up to the salesman.</li>
+        </ul>
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Pre-Pick Up:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>For next day pick ups, walk through basics in your mind and in LAVA.</li>
+            <li>Verify that all required carrier and driver information is in the load. If missing, check to see if it has been sent via email to the salesperson on the load, or call the dispatcher.</li>
+            <li>Verify shipper and receiver information is accurate. Ensure that there is a contact person at the shipper and receiver.</li>
+            <li>You can call the driver and introduce yourself. Ask them if it would be helpful for you to text them the pick up address. Ask them to text you when they are out for pick up.</li>
+        </ul>
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Pick Ups:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Treat this call like you are screening the driver to make sure everything the dispatcher said when you booked the load was true.</li>
+            <li>Call the DRIVER for an update. Request the following information:
+                <ul class="list-circle list-inside ml-4 space-y-1">
+                    <li>Confirm that they work for the carrier you booked with. (“What company are you driving for?”) if they say they work for a different company, that means the load is double brokered.</li>
+                    <li>Current location (city, state, and status) Check on google maps to see how far they are from the pickup. Don’t assume they’ve checked.</li>
+                    <li>ETA. Check if they have to stop and do anything before pickup (get gas, swap trailers, get food).</li>
+                </ul>
+            </li>
+            <li>Review load details (Ex. Tarps, Scale Tickets, PPE, etc.). Make sure they know where the load is going. Don’t assume the dispatcher told them.</li>
+            <li>Confirm the PU address with them. Oftentimes a dispatcher will find a better paying load and pull their driver off. The driver will think you’re the broker on their new load and you won’t realize until you find out they’re heading to a different address.</li>
+            <li>Re-state the pick up window / appt time. Make sure they can make delivery at the specified time. (Do they have to stop and reset their hours?).</li>
+            <li>Tell the driver to call you and confirm when they make it to the shipper (NOTE: if they don't call you, you must reach out and confirm they made it).</li>
+            <li>Send a MacroPoint request before you make this call, and confirm that the driver is on it and will stay on for the duration of the load.</li>
+            <li>Ask them to get signed in and out times from the shipper.</li>
+        </ul>
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">In Transit:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Must check MacroPoint every day the load is in transit. If for some reason the driver isn’t on MacroPoint, or MacroPoint stops giving updates, call the Driver and make sure they’re good.</li>
+            <li>Check at the beginning and end of your shift.</li>
+            <li>Ask open-ended questions (“Where are you?” NOT “Are you in x location?”).</li>
+            <li>Add notes on current location (City, State, Status).</li>
+            <li>Double check ETD (estimated time of Delivery).</li>
+            <li>Ask them if they have a re-load already - see if they want one</li>
+        </ul>
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-3 border-b pb-2 border-gray-200">Deliveries:</h3>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Call the DRIVER for an update (and add notes in LAVA).</li>
+            <li>(CITY, STATE, STATUS!!!)</li>
+            <li>ETA to scheduled delivery</li>
+            <li>If they are tracking late to the delivery, ask the following:
+                <ul class="list-circle list-inside ml-4 space-y-1">
+                    <li>What is the nature of the delay?</li>
+                    <li>What time will they arrive at the receiver</li>
+                </ul>
+            </li>
+            <li>Verify that it looks like a legitimate time by searching their current location in Google Maps (traffic / weather / etc.)</li>
+            <li>Tell the driver to text you and confirm when they make it to the consignee / if they don't call, you must reach out and confirm they made it.</li>
+            <li>Ask them to get signed in and out times from the shipper.</li>
+            <li>If they have delivered, ask if there were any overages, shortages, or damages. If they say yes, find out the details</li>
+            <li>Get the POD (Proof of Delivery). Send it to AP@AVALOGISTICS.COM. Don’t put it in the load folder.</li>
+            <li>Check if the POD was signed. Was it signed by someone you’d expect to sign it, or by someone new?</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module9-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 9
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 9 Section (Initially Hidden) -->
+    <section id="module9-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-purple-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-purple-600 text-xl font-bold mr-2">🤝</span>
+            <h2 class="text-4xl font-bold text-purple-700 text-center">Module 9: Building Relationships</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Building strong relationships with carriers is key to long-term success and efficiency in freight brokering.
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>If you run a load with a carrier that did a good job for you, try to build a relationship with them and learn more about their company.</li>
+            <li>Ask about their number of trucks. Find out if the company has assets, or if they mostly have owner operators running under their MC. (This is important because then you can determine whether to build the relationship with the driver or with the dispatcher.)</li>
+            <li>Where does the Carrier like to run? Ask them questions such as do you prefer to stay as close to home as possible, do you like longhauls. Is there anywhere you won’t go? Do you have any dedicated lanes that you are always looking for backhauls on?</li>
+            <li>Do they currently run lanes that will regularly put their trucks in an area you have loads out of? This is very important, if you find this you will be able to dramatically increase your margin percentage. (Ex. Gabbs, NV to Neosho, MO)</li>
+            <li>Thank them for the service and give them the first opportunity at freight. This helps create the relationship better than anything. If you call your carrier before you go to the board it will be extremely beneficial for both parties. They will soon start calling you as well before they look on the boards knowing that they won’t get strung along by some other broker.</li>
+            <li>Call and build a carrier base in places that you regularly struggle out of/places you have a lot of freight out of. Try to be aware of places that you are getting a lot of quote requests from but not winning because of a lack of capacity. When you have a free moment in the day do things such as searching google for trucks (use unconventional methods) and finding some more carriers based in that area.</li>
+            <li>Ask when they will have a truck back in the area. Always do this! Even if you don’t have another load in that area. If they say yes, you can relay this information back to the salesman and he or she can go back to the customer and let them know that they will have another truck in the area and try to get another load.</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module10-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 10
+            </button>
+        </div>
+    </section>
+
+    <!-- New Module 10 Section (Initially Hidden) -->
+    <section id="module10-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-green-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-green-600 text-xl font-bold mr-2">🔒</span>
+            <h2 class="text-4xl font-bold text-green-700 text-center">Module 10: Additional Delivery Checks (Two-Factor Authentication)</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            To confirm a load has been delivered, we need at least one of the following in addition to a signed POD from the carrier:
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Specific documents that can only be supplied by the receiver.</li>
+            <li>MacroPoint tracking the driver at the delivery location (Note how long they were there. Was it only 15 minutes, or a few hours?).</li>
+            <li>Confirmation from the receiver or customer (check with salesman if they want support doing this, or they will themselves).</li>
+        </ul>
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-400 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-500 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
             <button onclick="showSection('main-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
                 Back to Training Hub
             </button>
@@ -491,21 +967,86 @@
     </footer>
 
     <script>
+        let pageHistory = []; // Initialize history stack
+
         // Function to show/hide sections
-        function showSection(sectionId) {
-            const sections = ['main-content', 'experience-selection', 'logistics-basics-content', 'module1-content'];
+        function showSection(sectionId, pushToHistory = true) {
+            const sections = ['main-content', 'logistics-basics-content', 'module1-content', 'module2-content', 'module3-content', 'module4-content', 'module5-content', 'module6-content', 'module7-content', 'module8-content', 'module9-content', 'module10-content'];
+
+            // Hide all sections first
             sections.forEach(id => {
                 const section = document.getElementById(id);
                 if (section) {
-                    if (id === sectionId) {
-                        section.classList.remove('hidden');
+                    section.classList.add('hidden');
+                }
+            });
+
+            // Show the requested section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+            }
+
+            // Manage history
+            if (pushToHistory) {
+                // Only push if it's a new page (not navigating back to the same page)
+                if (pageHistory.length === 0 || pageHistory[pageHistory.length - 1] !== sectionId) {
+                    pageHistory.push(sectionId);
+                }
+            }
+            // Ensure history doesn't grow indefinitely (optional, but good practice)
+            if (pageHistory.length > 20) { // Keep last 20 pages in history
+                pageHistory = pageHistory.slice(-20);
+            }
+
+            // Unlock next module if current one is a module page
+            const currentModuleIndex = sections.indexOf(sectionId);
+            if (currentModuleIndex >= 0 && currentModuleIndex < sections.length - 1) {
+                const nextModuleId = sections[currentModuleIndex + 1];
+                localStorage.setItem(`module-${nextModuleId}-unlocked`, 'true');
+                updateModuleCardStates(); // Update UI to reflect unlocked state
+            }
+            // Also unlock the current module if it's a module page
+            localStorage.setItem(`module-${sectionId}-unlocked`, 'true');
+            updateModuleCardStates(); // Update UI to reflect unlocked state
+
+
+            // Scroll to the top of the newly displayed section
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to go back in history
+        function goBack() {
+            if (pageHistory.length > 1) {
+                pageHistory.pop(); // Remove current page from history
+                const prevSectionId = pageHistory[pageHistory.length - 1]; // Get the previous page
+                showSection(prevSectionId, false); // Show it, but don't push to history again
+            } else {
+                // If no history, go to main content
+                showSection('main-content', false);
+            }
+        }
+
+        // Function to update the locked/unlocked state of module cards
+        function updateModuleCardStates() {
+            const moduleCards = document.querySelectorAll('.main-content .module-card');
+            moduleCards.forEach(card => {
+                const targetModuleId = card.dataset.targetModule;
+                // The Basics is always unlocked by default
+                if (targetModuleId === 'logistics-basics-content') {
+                    card.classList.remove('locked');
+                    card.onclick = () => showSection(card.dataset.targetModule);
+                } else {
+                    const isUnlocked = localStorage.getItem(`module-${targetModuleId}-unlocked`);
+                    if (isUnlocked === 'true') {
+                        card.classList.remove('locked');
+                        card.onclick = () => showSection(card.dataset.targetModule);
                     } else {
-                        section.classList.add('hidden');
+                        card.classList.add('locked');
+                        card.onclick = () => { /* do nothing if locked */ };
                     }
                 }
             });
-            // Scroll to the top of the newly displayed section
-            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
         }
 
         // Event listener for the AI Terminology Explainer button
@@ -535,7 +1076,7 @@
                 chatHistory.push({ role: "user", parts: [{ text: prompt }] });
 
                 const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will automatically provide the API key at runtime
+                let apiKey = ""; // Canvas will automatically provide the API key at runtime
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                 const response = await fetch(apiUrl, {
@@ -564,28 +1105,13 @@
             }
         });
 
-        // JavaScript for scroll-triggered animations
+        // Initial setup when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            const scrollRevealItems = document.querySelectorAll('.scroll-reveal-item');
-
-            const observerOptions = {
-                root: null, // viewport
-                rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the item is visible
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-revealed');
-                        observer.unobserve(entry.target); // Stop observing once revealed
-                    }
-                });
-            }, observerOptions);
-
-            scrollRevealItems.forEach(item => {
-                observer.observe(item);
-            });
+            // Set "The Basics" as unlocked by default if not already set
+            if (localStorage.getItem('module-logistics-basics-content-unlocked') === null) {
+                localStorage.setItem('module-logistics-basics-content-unlocked', 'true');
+            }
+            updateModuleCardStates(); // Apply initial locked/unlocked states
         });
     </script>
 </body>
