@@ -12,17 +12,15 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        /* Custom style for the hero section background image */
+        /* Custom style for the hero section */
         .hero-background {
-            background-image: url('https://avalogistics.com/wp-content/uploads/2019/02/AVA-Logo-2.png');
-            background-size: 25% auto; /* Made smaller, maintaining aspect ratio */
-            background-position: 2rem 2rem; /* Positioned to the top-left corner with some padding */
-            background-repeat: no-repeat; /* Ensure it doesn't repeat */
-            min-height: 300px; /* Ensure enough height to see the background */
-            position: relative; /* Needed for overlay positioning */
+            min-height: 300px; /* Ensure enough height */
+            position: relative; /* Needed for absolute positioning of logo and overlay */
             display: flex; /* Use flexbox to align content */
-            align-items: center; /* Vertically center content within the section */
-            justify-content: flex-end; /* Push content to the right */
+            align-items: center; /* Vertically center text content within the section */
+            justify-content: flex-end; /* Push text content to the right */
+            background-color: #1a202c; /* Fallback background color for the hero section */
+            overflow: hidden; /* Hide any overflow from absolutely positioned elements */
         }
         .hero-background::before {
             content: "";
@@ -31,12 +29,22 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
+            background-color: rgba(243, 244, 246, 0.5); /* Light gray overlay with 50% opacity */
             border-radius: 0.5rem; /* Match parent border-radius */
+            z-index: 1; /* Ensure overlay is below content but above background */
         }
+        .hero-logo-left {
+            position: absolute;
+            top: 2rem; /* Position from top */
+            left: 2rem; /* Position from left */
+            max-width: 200px; /* Control the maximum width of the logo */
+            height: auto; /* Maintain aspect ratio */
+            z-index: 2; /* Ensure logo is above the overlay */
+        }
+        /* Removed .hero-logo-right CSS rule */
         .hero-content {
             position: relative; /* Bring content above the overlay */
-            z-index: 10; /* Ensure content is on top */
+            z-index: 2; /* Ensure content is on top */
             text-align: center; /* Center text inside the box */
             width: 100%; /* Default full width on small screens */
             max-width: 450px; /* Limit max width for the text box */
@@ -57,6 +65,19 @@
                 max-width: 650px; /* Wider on very large screens */
                 margin-right: 6rem; /* Even more margin from right */
             }
+        }
+
+        /* Styles for scroll-triggered animations */
+        .scroll-reveal-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, transform; /* Optimize for animation */
+        }
+
+        .scroll-reveal-item.is-revealed {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -80,15 +101,20 @@
     <div id="main-content">
         <!-- Hero Section -->
         <section class="hero-background text-white py-20 rounded-lg m-4 shadow-lg">
+            <!-- Logo on the left -->
+            <img src="https://avalogistics.com/wp-content/uploads/2019/02/AVA-Logo-2.png" alt="AVA Logistics Logo" class="hero-logo-left">
+
             <div class="container mx-auto hero-content">
                 <h2 class="text-5xl font-extrabold mb-4">Welcome to AVA Logistics!</h2>
                 <p class="text-xl mb-8">
                     Your Journey Starts Here
                 </p>
-                <button class="bg-white text-teal-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg" onclick="showSection('logistics-basics-content');">
-                    Start The Basics
+                <button class="bg-white text-teal-700 px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-200 transition duration-300 shadow-lg" onclick="showSection('experience-selection');">
+                    Begin Training
                 </button>
             </div>
+
+            <!-- Removed Logo on the right -->
         </section>
 
         <!-- Training Modules Section -->
@@ -167,9 +193,88 @@
                 An error occurred. Please try again.
             </div>
         </section>
+
+        <!-- New: Our Process in Action Section -->
+        <section id="process-in-action" class="container mx-auto p-4 mt-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Our Process in Action 📸</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Process Step 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/E0F2F7/263238?text=Step+1:+Shipper+Request" alt="Shipper Request" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Shipper Initiates Load</h3>
+                    <p class="text-gray-700">
+                        The process begins when a shipper contacts us with a need to move goods, providing details like origin, destination, commodity, and delivery timelines.
+                    </p>
+                </div>
+
+                <!-- Process Step 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/D1C4E9/263238?text=Step+2:+Finding+Capacity" alt="Finding Capacity" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Finding the Right Carrier</h3>
+                    <p class="text-gray-700">
+                        We leverage our network and load boards to find a suitable carrier with available capacity that matches the shipper's requirements.
+                    </p>
+                </div>
+
+                <!-- Process Step 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/C8E6C9/263238?text=Step+3:+Rate+Confirmation" alt="Rate Confirmation" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Rate Confirmation & Booking</h3>
+                    <p class="text-gray-700">
+                        Once a carrier is selected, we negotiate rates and send a comprehensive rate confirmation document outlining all load details.
+                    </p>
+                </div>
+
+                <!-- Process Step 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/FFECB3/263238?text=Step+4:+In-Transit+Tracking" alt="In-Transit Tracking" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Real-time Shipment Tracking</h3>
+                    <p class="text-gray-700">
+                        Throughout the journey, we use advanced tracking tools to monitor the shipment's progress and provide timely updates to the shipper.
+                    </p>
+                </div>
+
+                <!-- Process Step 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/FFCDD2/263238?text=Step+5:+Delivery+Confirmation" alt="Delivery Confirmation" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Successful Delivery & POD</h3>
+                    <p class="text-gray-700">
+                        Upon successful delivery, the carrier obtains a Proof of Delivery (POD), which is then sent to us to confirm completion.
+                    </p>
+                </div>
+
+                <!-- Process Step 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md scroll-reveal-item">
+                    <img src="https://placehold.co/600x400/B2EBF2/263238?text=Step+6:+Billing+and+Payment" alt="Billing and Payment" class="w-full h-auto rounded-md mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Billing and Payment Processing</h3>
+                    <p class="text-gray-700">
+                        Finally, we invoice the shipper for our services and ensure the carrier is promptly paid, completing the load cycle.
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <!-- Freight Broker Content Section (Initially Hidden) -->
+    <!-- Experience Selection Section (Initially Hidden) -->
+    <section id="experience-selection" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-blue-500 text-center">
+        <h2 class="text-3xl font-bold text-blue-700 mb-6">Have you worked in logistics before?</h2>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+            <button class="bg-teal-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-teal-700 transition duration-300 shadow-lg" onclick="showSection('logistics-basics-content');">
+                No, this is my first time!
+            </button>
+            <button class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg" onclick="showSection('module1-content');">
+                Yes, I have experience.
+            </button>
+        </div>
+        <div class="text-center mt-8">
+            <button onclick="showSection('main-content');" class="text-gray-600 hover:underline">
+                Back to Welcome
+            </button>
+        </div>
+    </section>
+
+    <!-- The Basics Content Section (Initially Hidden) -->
     <section id="logistics-basics-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-teal-500">
         <div class="flex items-center justify-center mb-4">
             <span class="text-teal-600 text-xl font-bold mr-2">🚛</span>
@@ -336,6 +441,44 @@
         </div>
     </section>
 
+    <!-- Module 1 Content Section (Initially Hidden) -->
+    <section id="module1-content" class="container mx-auto p-6 my-8 bg-white rounded-lg shadow-lg hidden border-t-4 border-purple-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-purple-600 text-xl font-bold mr-2">🚀</span>
+            <h2 class="text-4xl font-bold text-purple-700 text-center">Module 1: Advanced Logistics Concepts</h2>
+        </div>
+        <p class="text-lg text-gray-700 mb-4 leading-relaxed">
+            Welcome to Module 1! This section is designed for those with prior logistics experience. Here, we'll dive deeper into more advanced concepts and strategies.
+        </p>
+        <ul class="list-disc list-inside text-gray-700 mb-6 space-y-2 pl-4">
+            <li>Advanced Rate Negotiation Techniques</li>
+            <li>Risk Management in Transportation</li>
+            <li>Supply Chain Optimization Strategies</li>
+            <li>Understanding Incoterms in Detail</li>
+        </ul>
+
+        <div class="mt-8">
+            <div class="flex items-center mb-4">
+                <span class="text-purple-600 text-2xl font-bold mr-2">💻</span>
+                <h3 class="text-2xl font-semibold text-gray-800">LAVA Software Overview</h3>
+            </div>
+            <p class="text-lg text-gray-700 mb-4">
+                This is LAVA, where most of your job is spent. It's your central hub for managing all aspects of your work as a freight broker.
+            </p>
+            <!-- Updated image source to use the new, simplified filename -->
+            <img src="lava-screenshot.png" alt="LAVA Software Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=LAVA+Screenshot+Missing';">
+            <p class="text-lg text-gray-700">
+                Here is where you keep track of your loads, quotes, customers, carriers, leads, typical locations AVA uses, employees, and analytics.
+            </p>
+        </div>
+
+        <div class="text-center mt-8">
+            <button onclick="showSection('main-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Back to Training Hub
+            </button>
+        </div>
+    </section>
+
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white p-6 mt-8 rounded-t-lg">
         <div class="container mx-auto text-center">
@@ -350,7 +493,7 @@
     <script>
         // Function to show/hide sections
         function showSection(sectionId) {
-            const sections = ['main-content', 'logistics-basics-content']; // Add more section IDs if needed
+            const sections = ['main-content', 'experience-selection', 'logistics-basics-content', 'module1-content'];
             sections.forEach(id => {
                 const section = document.getElementById(id);
                 if (section) {
@@ -419,6 +562,30 @@
             } finally {
                 loadingIndicator.classList.add('hidden'); // Hide loading indicator
             }
+        });
+
+        // JavaScript for scroll-triggered animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollRevealItems = document.querySelectorAll('.scroll-reveal-item');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-revealed');
+                        observer.unobserve(entry.target); // Stop observing once revealed
+                    }
+                });
+            }, observerOptions);
+
+            scrollRevealItems.forEach(item => {
+                observer.observe(item);
+            });
         });
     </script>
 </body>
