@@ -34,6 +34,408 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        /* Module 1 specific styles (extracted from nested HTML) */
+        .content-item {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.5s ease-in-out, max-height 0.7s ease-out; /* Animation for fade and slide */
+        }
+
+        .content-item.active {
+            display: block; /* Show when active */
+            opacity: 1;
+            max-height: 500px; /* A value large enough to contain content */
+            padding-top: 1.25rem; /* Equivalent to Tailwind py-5 */
+            padding-bottom: 1.25rem; /* Equivalent to Tailwind py-5 */
+        }
+
+        /* Custom styles for the buttons to match the screenshot */
+        .interactive-button {
+            background-color: transparent; /* Transparent for non-active */
+            color: #4a90e2; /* Blue text */
+            padding: 0.75rem 1.25rem; /* py-3 px-5 */
+            border: none;
+            border-radius: 0; /* No border-radius for tabs */
+            cursor: pointer;
+            font-size: 1rem; /* text-base */
+            transition: background-color 0.3s ease, border-bottom 0.3s ease, color 0.3s ease;
+            position: relative;
+            display: flex; /* To center text */
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* Ensure buttons fill height of their container */
+        }
+
+        .interactive-button:hover {
+            background-color: #2a2a2a; /* Slightly darker on hover */
+            color: #6daffc; /* Slightly brighter blue on hover */
+        }
+
+        /* Active button style with dark background and blue underline */
+        .interactive-button.active-button {
+            background-color: #2a2a2a; /* Solid dark background for active */
+            border-bottom: 3px solid #4a90e2; /* Blue underline */
+            color: #4a90e2; /* Ensure text remains blue */
+        }
+
+        /* Adjust button group background and add bottom border */
+        .button-group {
+            background-color: #0d0d0d; /* Darker background for the button group */
+            border-bottom: 1px solid #333; /* Thin grey line below buttons */
+            padding: 0 1.25rem; /* Adjust padding to match screenshot */
+            height: 60px; /* Fixed height for the button bar */
+        }
+
+        /* Styles for the new header */
+        .header {
+            background-color: #1a1a1a; /* Dark background */
+            padding: 0.75rem 1.25rem; /* Adjusted padding */
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* space-x-4 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            height: 60px; /* Fixed height for header */
+        }
+
+        .hamburger-menu {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+            margin-right: 0.5rem; /* Space between hamburger and logo */
+            z-index: 1001; /* Ensure it's above the overlay */
+        }
+
+        .hamburger-menu:hover {
+            background-color: #2a2a2a;
+        }
+
+        .hamburger-menu-line {
+            width: 100%;
+            height: 2px;
+            background-color: #fff; /* White lines */
+            border-radius: 1px;
+        }
+
+        .logo-text {
+            color: #4a90e2; /* Blue text */
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.05em; /* Slight letter spacing for "LOGISTICS" */
+        }
+
+        /* Right-side circular icon */
+        .right-icon-container {
+            margin-left: auto; /* Pushes it to the right */
+            width: 36px;
+            height: 36px;
+            background-color: #4a90e2; /* Blue background */
+            border-radius: 50%; /* Circular */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem; /* text-xl */
+            cursor: pointer;
+        }
+
+        /* Overall container adjustments */
+        .module1-container {
+            max-width: 100%; /* Allow it to span more width */
+            padding: 0; /* Remove container padding */
+            box-shadow: none; /* Remove container shadow, headers/buttons will have their own */
+        }
+
+        /* body { */
+        /* background-color: #333; */ /* Darker background for the whole page */
+        /* padding: 0; */ /* Remove body padding */
+        /* margin: 0; */ /* Remove body margin */
+        /* display: block; */ /* Allow container to take full width */
+        /* } */
+
+        /* Styles for the dynamic content display box */
+        .content-display {
+            background-color: #fff;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 1.25rem 1.25rem; /* mx-5 my-5 */
+            overflow: hidden; /* Crucial for max-height transition */
+
+            /* Initial state: collapsed and invisible */
+            max-height: 0;
+            opacity: 0;
+            padding: 0 2rem; /* Initial horizontal padding, no vertical */
+            transition: max-height 0.7s ease-out, opacity 0.5s ease-in-out, padding 0.7s ease-out;
+        }
+
+        .content-display.content-display-expanded {
+            /* Expanded state: visible and with full padding */
+            max-height: 500px; /* A value large enough to contain content */
+            opacity: 1;
+            padding: 2rem; /* Full padding */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 280px; /* Fixed width as per screenshot */
+            background-color: #1a1a1a; /* Dark background */
+            color: white;
+            transform: translateX(-100%); /* Start off-screen */
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000; /* Ensure it's above main content but below hamburger */
+            padding-top: 60px; /* Space for the fixed header */
+            overflow-y: auto; /* Allow scrolling if content is long */
+        }
+
+        .sidebar.open {
+            transform: translateX(0); /* Slide into view */
+        }
+
+        .sidebar-header {
+            background-color: #0d0d0d; /* Slightly darker than sidebar body */
+            padding: 1rem 1.25rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+            position: sticky; /* Keep header visible on scroll */
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ccc; /* Lighter grey for section titles */
+            padding: 1rem 1.25rem 0.5rem;
+            border-bottom: 1px solid #333; /* Separator line */
+            margin-top: 1rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            cursor: pointer; /* Indicate clickability */
+        }
+
+        .sidebar-item:hover {
+            background-color: #2a2a2a; /* Darker on hover */
+        }
+
+        .sidebar-item svg {
+            width: 16px;
+            height: 16px;
+            margin-left: auto; /* Push icon to the right */
+            fill: #ccc; /* Light grey for the icon */
+        }
+
+        /* Overlay to dim background when sidebar is open */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999; /* Below sidebar, above main content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Action Bar Styles */
+        .action-bar {
+            background-color: #1a1a1a; /* Dark background */
+            padding: 0.75rem 1.25rem; /* py-3 px-5 */
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* space-x-2 */
+            border-bottom: 1px solid #333; /* Thin grey line below */
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+        }
+
+        .action-button {
+            padding: 0.5rem 1rem; /* py-2 px-4 */
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem; /* text-sm */
+            font-weight: 600; /* semi-bold */
+            transition: background-color 0.2s ease;
+            height: 38px; /* Fixed height for consistency */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-button.blue {
+            background-color: #007bff; /* Blue */
+            color: white;
+            border-top-left-radius: 0.25rem; /* rounded-l-md */
+            border-bottom-left-radius: 0.25rem; /* rounded-l-md */
+        }
+        .action-button.blue:hover { background-color: #0056b3; }
+
+        .action-button.orange {
+            background-color: #ff8c00; /* Orange */
+            color: white;
+        }
+        .action-button.orange:hover { background-color: #cc7000; }
+
+        .action-button.green {
+            background-color: #28a745; /* Green */
+            color: white;
+            border-top-right-radius: 0.25rem; /* rounded-r-md */
+            border-bottom-right-radius: 0.25rem; /* rounded-r-md */
+        }
+        .action-button.green:hover { background-color: #1e7e34; }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            background-color: #333; /* Darker grey */
+            border-radius: 0.25rem; /* rounded-md */
+            overflow: hidden; /* For combined border-radius */
+            height: 38px; /* Fixed height */
+        }
+
+        .filter-dropdown {
+            background-color: transparent;
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem; /* space for arrow */
+            -webkit-appearance: none; /* Remove default arrow */
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 16px;
+        }
+
+        .filter-select-button {
+            background-color: transparent;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            height: 100%;
+            border-left: 1px solid #444; /* Separator */
+            transition: background-color 0.2s ease;
+        }
+        .filter-select-button:hover { background-color: #444; }
+
+        .search-input {
+            background-color: #333; /* Darker grey */
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem; /* rounded-md */
+            font-size: 0.9rem;
+            flex-grow: 1; /* Allows it to take available space */
+            min-width: 150px; /* Minimum width before wrapping */
+            height: 38px; /* Fixed height */
+        }
+        .search-input::placeholder {
+            color: #bbb; /* Lighter placeholder text */
+        }
+
+        .settings-button, .color-palette-button {
+            background-color: #333; /* Darker grey background */
+            color: white;
+            padding: 0.5rem 0.75rem;
+            border: none;
+            border-radius: 0.25rem; /* rounded-md */
+            cursor: pointer;
+            font-size: 0.9rem;
+            height: 38px; /* Fixed height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+        }
+        .settings-button:hover, .color-palette-button:hover { background-color: #444; }
+
+        /* Specific style for the color palette button to make it distinct */
+        .color-palette-button {
+            background-color: #555; /* A slightly different shade of grey */
+        }
+        .color-palette-button:hover {
+            background-color: #666;
+        }
+        /* Adjust font size for emoji to ensure it's visible */
+        .color-palette-button .emoji-icon {
+            font-size: 1.25rem; /* Adjust as needed */
+            line-height: 1; /* Prevent extra space around emoji */
+        }
+
+        /* Grouping for the first three buttons */
+        .button-group-actions {
+            display: flex;
+            border-radius: 0.25rem;
+            overflow: hidden; /* Ensures inner buttons respect outer border-radius */
+            margin-right: 0.5rem; /* Space after this group */
+        }
+
+        /* Legend specific styles */
+        .legend-color-box {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #333; /* Dark text for legend items */
+        }
+        .legend-status-box {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            margin: 0 4px;
+        }
+        .legend-status-box.red {
+            background-color: #ff6347; /* Tomato red */
+        }
+        .legend-status-box.green {
+            background-color: #28a745; /* Green */
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased">
@@ -333,13 +735,13 @@
                     ✅ <strong>LAVA:</strong> Software to manage loads, track shipments, and handle billing.
                 </li>
                 <li>
-                    ✅ <strong>Load Boards:</b> Platforms like DAT or Truckstop to find trucks or post loads.
+                    ✅ <strong>Load Boards:</strong> Platforms like DAT or Truckstop to find trucks or post loads.
                 </li>
                 <li>
-                    ✅ <strong>Carrier Onboarding Software:</b> Tools like RMIS or Carrier Assure to verify insurance, FMCSA compliance, and performance.
+                    ✅ <strong>Carrier Onboarding Software:</strong> Tools like RMIS or Carrier Assure to verify insurance, FMCSA compliance, and performance.
                 </li>
                 <li>
-                    ✅ <strong>Tracking Tools:</b> MacroPoint – provide real-time load tracking.
+                    ✅ <strong>Tracking Tools:</strong> MacroPoint – provide real-time load tracking.
                 </li>
             </ul>
         </div>
@@ -382,116 +784,232 @@
             <h2 class="text-4xl font-bold text-purple-500 text-center">Module 1: LAVA</h2>
         </div>
 
-        <div class="mt-8">
-            <div class="flex items-center mb-4">
-                <span class="text-purple-400 text-2xl font-bold mr-2">💻</span>
-                <h3 class="text-2xl font-semibold text-gray-100">LAVA Software Overview</h3>
+        <!-- Module 1 Interactive Content -->
+        <div class="module1-container flex flex-col w-full">
+            <!-- New Header Section -->
+            <div class="header">
+                <div class="hamburger-menu" id="hamburger-menu-module1">
+                    <div class="hamburger-menu-line"></div>
+                    <div class="hamburger-menu-line"></div>
+                    <div class="hamburger-menu-line"></div>
+                </div>
+                <div class="logo-text">
+                    AVA LOGISTICS
+                </div>
+                <div class="right-icon-container">
+                    T
+                </div>
             </div>
-            <p class="text-lg text-gray-300 mb-4">
-                This is LAVA, where most of your job is spent. It's your central hub for managing all aspects of your work as a freight broker.
-            </p>
-            <!-- Screenshot of LAVA software with fallback -->
-            <img src="lava-screenshot.png" alt="LAVA Software Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/333333/cccccc?text=LAVA+Screenshot+Missing';">
-            <p class="text-lg text-gray-300">
-                Here is where you keep track of your loads, quotes, customers, carriers, leads, typical locations AVA uses, employees, and analytics.
-            </p>
 
-            <!-- Sub-sections detailing LAVA functionalities -->
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Load</h4>
-                <p class="text-gray-300">
-                    In the Load tab of LAVA, this is where our current and past lanes are run. As you get a load, you will need a carrier. You will then find a carrier, and once you do this you will get all of their information and put it into LAVA. This tab helps manage all your loads and has them in one place.
-                </p>
+            <!-- Button Group -->
+            <div class="button-group flex flex-nowrap overflow-x-auto">
+                <button class="interactive-button" data-target="load">Load</button>
+                <button class="interactive-button" data-target="quote">Quote</button>
+                <button class="interactive-button" data-target="customer">Customer</button>
+                <button class="interactive-button" data-target="carrier">Carrier</button>
+                <button class="interactive-button" data-target="lead">Lead</button>
+                <button class="interactive-button" data-target="location">Location</button>
+                <button class="interactive-button" data-target="employee">Employee</button>
+                <button class="interactive-button" data-target="analytics">Analytics</button>
             </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Quote</h4>
-                <p class="text-gray-300">
-                    This is where you build quotes for a customer. Through LAVA, you'll get the rate of three different companies, then LAVA will average the rates so that you can communicate that with your customer. This is where you "build your quotes".
-                </p>
+
+            <!-- New Action Bar -->
+            <div class="action-bar">
+                <div class="button-group-actions">
+                    <button class="action-button blue">New Load</button>
+                    <button class="action-button orange">Clear Filters</button>
+                    <button class="action-button green">Refresh</button>
+                </div>
+
+                <div class="filter-group">
+                    <select class="filter-dropdown">
+                        <option value="">No Filter Selected</option>
+                        <option value="filter1">Filter 1</option>
+                        <option value="filter2">Filter 2</option>
+                    </select>
+                    <button class="filter-select-button">Select Filter</button>
+                </div>
+
+                <input type="text" class="search-input" placeholder="Search...">
+
+                <!-- Settings Button with text only -->
+                <button class="settings-button">
+                    Settings
+                </button>
+
+                <!-- Color Palette Button with Emoji -->
+                <button class="color-palette-button" id="color-palette-button-module1">
+                    <span class="emoji-icon">🎨</span>
+                </button>
             </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Customer</h4>
-                <p class="text-gray-300">
-                    This is where all of our customers are in LAVA.
-                </p>
-            </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Carrier</h4>
-                <p class="text-gray-300">
-                    This is where you can find all of our approved carriers in LAVA. If you ever need carriers this is a good place to look, or to vet a carrier.
-                </p>
-            </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Lead</h4>
-                <p class="text-gray-300">
-                    This is where you find your customers. You will build leads in many different ways, then cold call in hopes of landing a customer.
-                </p>
-            </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Location</h4>
-                <p class="text-gray-300">
-                    This is where carriers are based out of, in case you need a regular lane run out of a city.
-                </p>
-            </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Employee</h4>
-                <p class="text-gray-300">
-                    This is all of the employee's contacts where you can find their email, extension, and personal phone.
-                </p>
-            </div>
-            <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Analytics</h4>
-                <p class="text-gray-300">
-                    This tab shows how the company is doing as a whole. This shows the profits, leads created and much more.
-                </p>
+
+            <!-- Content Display Area -->
+            <div class="content-display" id="module1-content-display">
+                <!-- Default message when no tab is selected -->
+                <div id="default-message-module1" class="content-item text-center text-gray-500 text-lg">
+                    Click a button above to learn more!
+                </div>
+
+                <div id="load" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Load</h2>
+                    <p class="text-gray-700 leading-relaxed">In the Load tab of LAVA, this is where our current and past lanes are run. As you get a load, you will need a carrier. You will then find a carrier, and once you do this you will get all of their information and put it into LAVA. This tab helps manage all your loads and has them in one place.</p>
+                    <img src="http://googleusercontent.com/file_content/1" alt="LAVA Load Section Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+                </div>
+                <div id="quote" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Quote</h2>
+                    <p class="text-gray-700 leading-relaxed">This is where you build quotes for a customer. Through LAVA, you'll get the rate of three different companies, then LAVA will average the rates so that you can communicate that with your customer. This is where you "build your quotes".</p>
+                </div>
+                <div id="customer" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Customer</h2>
+                    <p class="text-gray-700 leading-relaxed">This is where all of our customers are in LAVA.</p>
+                </div>
+                <div id="carrier" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Carrier</h2>
+                    <p class="text-gray-700 leading-relaxed">This is where you can find all of our approved carriers in LAVA. If you ever need carriers this is a good place to look, or to vet a carrier.</p>
+                </div>
+                <div id="lead" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Lead</h2>
+                    <p class="text-gray-700 leading-relaxed">This is where you find your customers. You will build leads in many different ways, then cold call in hopes of landing a customer.</p>
+                </div>
+                <div id="location" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Location</h2>
+                    <p class="text-gray-700 leading-relaxed">This is where carriers are based out of, in case you need a regular lane run out of a city.</p>
+                </div>
+                <div id="employee" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Employee</h2>
+                    <p class="text-gray-700 leading-relaxed">This is all of the employee's contacts where you can find their email, extension, and personal phone.</p>
+                </div>
+                <div id="analytics" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Analytics</h2>
+                    <p class="text-gray-700 leading-relaxed">This tab shows how the company is doing as a whole. This shows the profits, leads created and much more.</p>
+                </div>
+
+                <!-- New Legend Content Section -->
+                <div id="legend" class="content-item">
+                    <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Legend</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">This is where you can find what all of the colors mean on the rows.</p>
+
+                    <div class="legend-item">
+                        <span class="legend-color-box" style="background-color: #ff6347;"></span>
+                        Red when Status is in <span class="legend-status-box red">Claim</span> or <span class="legend-status-box red">Discrepancy</span>.
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color-box" style="background-color: #28a745;"></span>
+                        Green when Status is in <span class="legend-status-box green">Completed</span>.
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Section for Legend, Settings, and Filters in LAVA -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                <div class="flex items-center mb-4">
-                    <span class="text-purple-400 text-2xl font-bold mr-2">⚙️</span>
-                    <h3 class="text-2xl font-semibold text-gray-100">Legend settings and filters</h3>
-                </div>
-                <!-- Screenshot of LAVA settings with fallback -->
-                <img src="Screenshot 2025-07-17 at 8.06.29 AM.png" alt="LAVA Legend Settings and Filters Screenshot" class="w-full h-auto rounded-md mb-4 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x150/333333/cccccc?text=Legend+Settings+Screenshot+Missing';">
-                <p class="text-lg text-gray-300">
-                    This section explains how to use the legend settings and filters within the LAVA software to customize your view and find specific information efficiently.
-                </p>
-                <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                    <h4 class="text-xl font-semibold text-gray-100 mb-2">Legend</h4>
-                    <p class="text-gray-300">
-                        This is where you can find what all of the colors mean on the rows.
-                    </p>
-                </div>
-                <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                    <h4 class="text-xl font-semibold text-gray-100 mb-2">Settings</h4>
-                    <p class="text-gray-300">
-                        This is where you can customize what your table to show what you want in order to make it more organized. You can also edit the conditions and prohibit things like cancelled loads.
-                    </p>
-                </div>
-                <div class="mt-6 p-4 bg-gray-700 rounded-lg border border-gray-600">
-                    <h4 class="text-xl font-semibold text-gray-100 mb-2">Filters</h4>
-                    <p class="text-gray-300">
-                        This is where you can edit what you want to see in the table. For example, if you want to only show loads for a specific customer, than you can apply that filter to only show that load.
-                    </p>
-                </div>
+        <!-- Sidebar Menu -->
+        <div class="sidebar" id="sidebar-module1">
+            <div class="sidebar-section-title">Employee Resources</div>
+            <div class="sidebar-item">
+                Account Logins
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Customer Packet
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                PTO Request
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Customer Coverage Lists
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Events Calendar
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Employee Directory
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                HR Handbook
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Claim Checklist
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Third-Party Payment Request
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
             </div>
 
-            <!-- Section for Hamburger Menu in LAVA -->
-            <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                <div class="flex items-center mb-4">
-                    <span class="text-purple-400 text-2xl font-bold mr-2">☰</span>
-                    <h3 class="text-2xl font-semibold text-gray-100">Hamburger Menu</h3>
-                </div>
-                <!-- Screenshot of Hamburger Menu with fallback -->
-                <img src="Screenshot 2025-07-17 at 9.11.08 AM.png" alt="Hamburger Menu Screenshot" class="w-full h-auto rounded-md mb-4 hamburger-menu-image shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/333333/cccccc?text=Hamburger+Menu+Missing';">
-                <p class="text-lg text-gray-300">
-                    This menu provides quick access to various employee, carrier, and training resources, along with maps for active carriers and customers.
-                </p>
+            <div class="sidebar-section-title">Carrier Resources</div>
+            <div class="sidebar-item">
+                RMIS Broker Login
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                IM/LTL/OTR/Drayage/3PL
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+
+            <div class="sidebar-section-title">Training Resources</div>
+            <div class="sidebar-item">
+                Training Documents
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Terminology
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Training LAVA
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+
+            <div class="sidebar-section-title">Maps</div>
+            <div class="sidebar-item">
+                Active Carriers
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
+            </div>
+            <div class="sidebar-item">
+                Active Customers
+                <svg viewBox="0 0 24 24" class="external-link-icon">
+                    <path d="M19 19H5V5H12V3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V12H19V19ZM14 3V5H17.59L7.76 14.83L9.17 16.24L19 6.41V10H21V3H14Z"/>
+                </svg>
             </div>
         </div>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay-module1"></div>
 
         <!-- Navigation buttons for Module 1 -->
         <div class="text-center mt-8 space-x-4">
@@ -674,7 +1192,7 @@
             <h2 class="text-4xl font-bold text-gray-500 text-center">Module 7: Vetting Carriers</h2>
         </div>
         <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-            Thoroughly vetting carriers is paramount to ensure the safety and reliability of our operations. Here's a comprehensive guide:
+            Throughly vetting carriers is paramount to ensure the safety and reliability of our operations. Here's a comprehensive guide:
         </p>
         <h3 class="text-2xl font-semibold text-gray-100 mb-3 border-b pb-2 border-gray-700">DO NOT GET A LOAD STOLEN:</h3>
         <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
@@ -1184,8 +1702,8 @@
 
     <script>
         // Array to keep track of the history of displayed sections for navigation
-        let pageHistory = []; 
-        // Object to store extracted terminology data for quick lookup
+        let pageHistory = [];
+        // Object to store extracted terminology data for quick lookup (initial data)
         let terminologyData = {};
 
         /**
@@ -1226,7 +1744,7 @@
                 }
             }
             // Optional: Limit history stack size to prevent excessive memory usage
-            if (pageHistory.length > 20) { 
+            if (pageHistory.length > 20) {
                 pageHistory = pageHistory.slice(-20); // Keep only the last 20 pages
             }
 
@@ -1295,49 +1813,179 @@
                     const term = termElement.textContent.trim();
                     const definition = definitionElement.textContent.trim();
                     // Store term in lowercase for case-insensitive lookup
-                    terminologyData[term.toLowerCase()] = definition; 
+                    terminologyData[term.toLowerCase()] = definition;
                 }
             });
         }
 
         // Event listener for the Terminology Explainer button
-        document.getElementById('explainTermBtn').addEventListener('click', () => {
+        document.getElementById('explainTermBtn').addEventListener('click', async () => {
             const termInput = document.getElementById('termInput');
             const explanationOutput = document.getElementById('explanationOutput');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const errorOutput = document.getElementById('errorOutput');
-            // Get the term from the input field, trim whitespace, and convert to lowercase for lookup
-            const term = termInput.value.trim().toLowerCase(); 
+            const term = termInput.value.trim();
 
-            // Validate if a term was entered
             if (!term) {
                 explanationOutput.textContent = "Please enter a term to explain.";
-                explanationOutput.classList.remove('text-gray-300'); 
-                explanationOutput.classList.add('text-red-400'); 
-                return; // Exit if no term is provided
+                explanationOutput.classList.remove('text-gray-300');
+                explanationOutput.classList.add('text-red-400');
+                return;
             }
 
             // Reset UI for a new request
-            explanationOutput.textContent = ""; // Clear previous explanation
-            errorOutput.classList.add('hidden'); // Hide any previous error messages
-            loadingIndicator.classList.remove('hidden'); // Show loading indicator (briefly)
-            explanationOutput.classList.remove('text-red-400'); // Remove error text color
-            explanationOutput.classList.add('text-gray-300'); // Restore default text color
+            explanationOutput.textContent = "";
+            errorOutput.classList.add('hidden');
+            loadingIndicator.classList.remove('hidden');
+            explanationOutput.classList.remove('text-red-400');
+            explanationOutput.classList.add('text-gray-300');
 
-            // Look up the term directly in the pre-extracted data
-            const definition = terminologyData[term]; 
+            // Try to find in pre-extracted data first
+            const localDefinition = terminologyData[term.toLowerCase()];
+            if (localDefinition) {
+                explanationOutput.textContent = localDefinition;
+                loadingIndicator.classList.add('hidden');
+                return;
+            }
 
-            if (definition) {
-                explanationOutput.textContent = definition; // Display the found definition
-            } else {
-                // If term not found, display a message
-                explanationOutput.textContent = `"${termInput.value.trim()}" not found in our terminology.`;
+            // If not found locally, call the LLM
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: `Explain the logistics term "${term}" in a concise and clear manner.` }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will automatically provide the API key
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    explanationOutput.textContent = text;
+                } else {
+                    explanationOutput.textContent = `Could not find an explanation for "${termInput.value.trim()}".`;
+                    explanationOutput.classList.remove('text-gray-300');
+                    explanationOutput.classList.add('text-red-400');
+                }
+            } catch (error) {
+                console.error("Error fetching explanation:", error);
+                explanationOutput.textContent = "Failed to get explanation. Please check your network connection or try again.";
                 explanationOutput.classList.remove('text-gray-300');
                 explanationOutput.classList.add('text-red-400');
+                errorOutput.classList.remove('hidden');
+            } finally {
+                loadingIndicator.classList.add('hidden');
             }
-            
-            loadingIndicator.classList.add('hidden'); // Hide loading indicator immediately after lookup
         });
+
+        // Module 1 Interactive LAVA section JavaScript
+        document.addEventListener('DOMContentLoaded', () => {
+            const module1Buttons = document.querySelectorAll('#module1-content .interactive-button');
+            const module1ContentItems = document.querySelectorAll('#module1-content .content-item');
+            const module1ContentDisplay = document.getElementById('module1-content-display');
+            const module1DefaultMessage = document.getElementById('default-message-module1');
+            const hamburgerMenuModule1 = document.getElementById('hamburger-menu-module1');
+            const sidebarModule1 = document.getElementById('sidebar-module1');
+            const overlayModule1 = document.getElementById('overlay-module1');
+            const colorPaletteButtonModule1 = document.getElementById('color-palette-button-module1');
+            const legendContentModule1 = document.getElementById('legend');
+
+            const hideAllModule1ContentAndDeactivateButtons = () => {
+                module1ContentItems.forEach(item => {
+                    item.classList.remove('active');
+                    item.addEventListener('transitionend', function handler() {
+                        if (!item.classList.contains('active')) {
+                            item.style.display = 'none';
+                        }
+                        item.removeEventListener('transitionend', handler);
+                    });
+                });
+                module1Buttons.forEach(button => {
+                    button.classList.remove('active-button');
+                });
+                if (colorPaletteButtonModule1) { // Check if button exists before removing class
+                    colorPaletteButtonModule1.classList.remove('active-button');
+                }
+            };
+
+            const toggleModule1Sidebar = () => {
+                sidebarModule1.classList.toggle('open');
+                overlayModule1.classList.toggle('active');
+            };
+
+            hamburgerMenuModule1.addEventListener('click', toggleModule1Sidebar);
+            overlayModule1.addEventListener('click', toggleModule1Sidebar);
+
+            module1Buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const targetContent = document.getElementById(targetId);
+
+                    if (targetContent.classList.contains('active')) {
+                        targetContent.classList.remove('active');
+                        button.classList.remove('active-button');
+                        setTimeout(() => {
+                            module1ContentDisplay.classList.remove('content-display-expanded');
+                            module1DefaultMessage.style.display = 'block';
+                            void module1DefaultMessage.offsetWidth;
+                            module1DefaultMessage.classList.add('active');
+                        }, 500);
+                    } else {
+                        module1ContentDisplay.classList.add('content-display-expanded');
+                        hideAllModule1ContentAndDeactivateButtons();
+                        setTimeout(() => {
+                            targetContent.style.display = 'block';
+                            void targetContent.offsetWidth;
+                            targetContent.classList.add('active');
+                            button.classList.add('active-button');
+                        }, 10);
+                    }
+                });
+            });
+
+            if (colorPaletteButtonModule1) { // Ensure the button exists before adding event listener
+                colorPaletteButtonModule1.addEventListener('click', () => {
+                    if (legendContentModule1.classList.contains('active')) {
+                        legendContentModule1.classList.remove('active');
+                        colorPaletteButtonModule1.classList.remove('active-button');
+                        setTimeout(() => {
+                            module1ContentDisplay.classList.remove('content-display-expanded');
+                            module1DefaultMessage.style.display = 'block';
+                            void module1DefaultMessage.offsetWidth;
+                            module1DefaultMessage.classList.add('active');
+                        }, 500);
+                    } else {
+                        module1ContentDisplay.classList.add('content-display-expanded');
+                        hideAllModule1ContentAndDeactivateButtons();
+                        setTimeout(() => {
+                            legendContentModule1.style.display = 'block';
+                            void legendContentModule1.offsetWidth;
+                            legendContentModule1.classList.add('active');
+                            colorPaletteButtonModule1.classList.add('active-button');
+                        }, 10);
+                    }
+                });
+            }
+
+            // Initial state for Module 1: hide all content and ensure no button is active on page load.
+            hideAllModule1ContentAndDeactivateButtons();
+            module1DefaultMessage.style.display = 'block';
+            void module1DefaultMessage.offsetWidth;
+            module1DefaultMessage.classList.add('active');
+            module1ContentDisplay.classList.remove('content-display-expanded');
+        });
+
 
         // Initial setup when the page loads:
         // Ensures "The Basics" module is marked as unlocked and updates module card states.
