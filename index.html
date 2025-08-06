@@ -12,7 +12,6 @@
         /* Apply Inter font family to the entire body */
         body {
             font-family: 'Inter', sans-serif;
-            padding: 1rem; /* Add overall padding to the body */
         }
 
         /* Custom styles for scroll-triggered animations (not currently applied to elements, but defined for future use) */
@@ -25,7 +24,7 @@
 
         .scroll-reveal-item.is-revealed {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0); 
         }
 
         /* Specific style for the hamburger menu image within Module 1 content */
@@ -158,6 +157,13 @@
             box-shadow: none; /* Remove container shadow, headers/buttons will have their own */
         }
 
+        /* body { */
+        /* background-color: #333; */ /* Darker background for the whole page */
+        /* padding: 0; */ /* Remove body padding */
+        /* margin: 0; */ /* Remove body margin */
+        /* display: block; */ /* Allow container to take full width */
+        /* } */
+
         /* Styles for the dynamic content display box */
         .content-display {
             background-color: #fff;
@@ -283,8 +289,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0.375rem; /* Rounded corners for action buttons */
-            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .action-button.blue {
@@ -316,7 +320,6 @@
             border-radius: 0.25rem; /* rounded-md */
             overflow: hidden; /* For combined border-radius */
             height: 38px; /* Fixed height */
-            flex-shrink: 0; /* Prevent shrinking */
         }
 
         .filter-dropdown {
@@ -380,7 +383,6 @@
             align-items: center;
             justify-content: center;
             transition: background-color 0.2s ease;
-            flex-shrink: 0; /* Prevent shrinking */
         }
         .settings-button:hover, .color-palette-button:hover { background-color: #444; }
 
@@ -403,7 +405,6 @@
             border-radius: 0.25rem;
             overflow: hidden; /* Ensures inner buttons respect outer border-radius */
             margin-right: 0.5rem; /* Space after this group */
-            flex-shrink: 0; /* Prevent shrinking */
         }
 
         /* Legend specific styles */
@@ -439,7 +440,7 @@
 </head>
 <body class="bg-gray-900 text-gray-200 antialiased">
     <!-- Header Section: Navigation bar at the top of the page -->
-    <header class="bg-gray-950 text-white p-4 shadow-md rounded-b-lg mx-auto max-w-7xl mt-4">
+    <header class="bg-gray-950 text-white p-4 shadow-md rounded-b-lg">
         <div class="container mx-auto flex justify-between items-center">
             <!-- Main title of the training portal -->
             <h1 class="text-3xl font-bold">Logistics Training Hub</h1>
@@ -456,7 +457,7 @@
     </header>
 
     <!-- Main Content Area: Contains the hero section and module cards -->
-    <div id="main-content" class="max-w-7xl mx-auto">
+    <div id="main-content">
         <!-- Hero Section: Welcoming banner with company logo and call to action -->
         <section class="relative bg-gray-800 text-white py-12 md:py-20 rounded-lg m-4 shadow-lg flex flex-col md:flex-row items-center justify-between px-4 md:px-8 overflow-hidden min-h-[300px]">
             <!-- Subtle dark overlay for visual effect -->
@@ -604,13 +605,6 @@
                 An error occurred. Please try again.
             </div>
         </section>
-
-        <!-- Hidden button to enable editing -->
-        <div class="text-center mt-8 pb-8"> <!-- Added padding-bottom for spacing -->
-            <button id="editModeToggleBtn" class="hidden bg-gray-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300 shadow-lg">
-                Enable Edit Mode
-            </button>
-        </div>
     </div>
 
     <!-- The Basics Content Section (Initially Hidden): Detailed content for "The Basics" module -->
@@ -620,16 +614,16 @@
             <h2 class="text-4xl font-bold text-teal-500 text-center">The Basics</h2>
         </div>
         <p class="text-lg text-gray-300 mb-4 leading-relaxed">
-            A freight broker is the middleman between a shipper (the person or company that needs goods moved) and a carrier (a trucking company or driver that hauls the freight).
+            A freight broker is the middleman between a customer (the person or company that needs goods moved) and a carrier (a trucking company or driver that hauls the freight).
         </p>
         <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
             <li>You don’t own trucks.</li>
             <li>You coordinate the movement of freight.</li>
-            <li>You get paid by the shipper, and you pay the carrier—you keep the difference (your margin).</li>
+            <li>You get paid by the customer, and you pay the carrier—you keep the difference (your margin).</li>
         </ul>
         <h3 class="text-2xl font-semibold text-gray-100 mb-3 border-b pb-2 border-gray-700">Broker’s Core Role:</h3>
         <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
-            <li>Find capacity (trucks) for shippers.</li>
+            <li>Find capacity (trucks) for customers.</li>
             <li>Negotiate rates on both ends.</li>
             <li>Track shipments from pickup to delivery.</li>
             <li>Solve issues fast: delays, breakdowns, bad weather, etc.</li>
@@ -654,7 +648,7 @@
                     <tbody>
                         <tr class="border-b border-gray-600 hover:bg-gray-600">
                             <td class="py-3 px-4 text-gray-100">1️⃣</td>
-                            <td class="py-3 px-4 text-gray-300">Shipper gives you a load to move (origin, destination, commodity, weight, delivery window).</td>
+                            <td class="py-3 px-4 text-gray-300">Customer gives you a load to move (origin, destination, commodity, weight, delivery window).</td>
                         </tr>
                         <tr class="border-b border-gray-600 hover:bg-gray-600">
                             <td class="py-3 px-4 text-gray-100">2️⃣</td>
@@ -666,7 +660,7 @@
                         </tr>
                         <tr class="border-b border-gray-600 hover:bg-gray-600">
                             <td class="py-3 px-4 text-gray-100">4️⃣</td>
-                            <td class="py-3 px-4 text-gray-300">Carrier picks up freight → You track and update the shipper.</td>
+                            <td class="py-3 px-4 text-gray-300">Carrier picks up freight → You track and update the customer.</td>
                         </tr>
                         <tr class="border-b border-gray-600 hover:bg-gray-600">
                             <td class="py-3 px-4 text-gray-100">5️⃣</td>
@@ -674,7 +668,7 @@
                         </tr>
                         <tr class="hover:bg-gray-600">
                             <td class="py-3 px-4 text-gray-100">6️⃣</td>
-                            <td class="py-3 px-4 text-gray-300">You invoice the shipper, and pay the carrier.</td>
+                            <td class="py-3 px-4 text-gray-300">You invoice the customer, and pay the carrier.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -761,7 +755,7 @@
                 As a broker, our profit comes from the spread between:
             </p>
             <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
-                <li>What the shipper pays you (e.g., $2,500)</li>
+                <li>What the customer pays you (e.g., $2,500)</li>
                 <li>What you pay the carrier (e.g., $2,000)</li>
             </ul>
             <p class="text-lg text-gray-300 mb-4">
@@ -859,6 +853,7 @@
                 <div id="load" class="content-item">
                     <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Load</h2>
                     <p class="text-gray-700 leading-relaxed">In the Load tab of LAVA, this is where our current and past lanes are run. As you get a load, you will need a carrier. You will then find a carrier, and once you do this you will get all of their information and put it into LAVA. This tab helps manage all your loads and has them in one place.</p>
+                    <img src="http://googleusercontent.com/file_content/1" alt="LAVA Load Section Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
                 </div>
                 <div id="quote" class="content-item">
                     <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Quote</h2>
@@ -874,11 +869,11 @@
                 </div>
                 <div id="lead" class="content-item">
                     <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Lead</h2>
-                    <p class="text-gray-700 leading-relaxed">This is where you find your customers. You will build leads in many different ways, then cold call in hopes of landing a customer.</p>
+                    <p class="text-gray-700 leading-relaxed">This is where you will find the companies/businesses you are pursuing to bring on as customers</p>
                 </div>
                 <div id="location" class="content-item">
                     <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Location</h2>
-                    <p class="text-gray-700 leading-relaxed">This is where carriers are based out of, in case you need a regular lane run out of a city.</p>
+                    <p class="text-gray-700 leading-relaxed">This is where carriers are based out of, in case you need a regular lane run out of a city. This also has all shippers, receivers and customer locations.</p>
                 </div>
                 <div id="employee" class="content-item">
                     <h2 class="text-2xl text-gray-800 mb-2.5 mt-0">Employee</h2>
@@ -1037,7 +1032,7 @@
             We find Customers from solicitations (and referrals). To manage our Customer solicitations we create Leads.
         </p>
         <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
-            <li>One way to find a Lead is to look for businesses near our Shippers and Receivers.</li>
+            <li>One way to find a Lead is to look for businesses near our Customers and Receivers.</li>
             <li>Another way to find a Lead is to look for businesses in the same industry as our other Customers.</li>
         </ul>
         <p class="text-lg text-gray-300 mb-4 leading-relaxed">
@@ -1177,7 +1172,7 @@
             <li>Let Dispatch know you will be calling the Driver within the next few minutes.</li>
             <li>Call the Driver to confirm the details of the shipment. Acquire his/her current location (city, state, and status). Review the specific expectations of the load with the driver.</li>
             <li>If you have arranged MacroPoint usage, ask the driver if they will get on it at this time, and listen for their reaction.</li>
-            <li>Review Shippers and Receivers / confirm appointment times and shipping hours. Make sure the Salesperson has added contacts at shipper and receiver. Please check with your salesperson before calling shippers or receivers.</li>
+            <li>Review Customers and Receivers / confirm appointment times and shipping hours. Make sure the Salesperson has added contacts at customer and receiver. Please check with your salesperson before calling customers or receivers.</li>
         </ul>
         <!-- Navigation buttons for Module 6 -->
         <div class="text-center mt-8 space-x-4">
@@ -1695,7 +1690,7 @@
     </section>
 
     <!-- Footer Section: Copyright and policy links -->
-    <footer class="bg-gray-950 text-white p-6 mt-8 rounded-t-lg mx-auto max-w-7xl">
+    <footer class="bg-gray-950 text-white p-6 mt-8 rounded-t-lg">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 Logistics Training Hub. All rights reserved.</p>
             <div class="flex justify-center space-x-4 mt-2">
@@ -1710,8 +1705,6 @@
         let pageHistory = [];
         // Object to store extracted terminology data for quick lookup (initial data)
         let terminologyData = {};
-        // Flag to track editing mode
-        let isEditingMode = false;
 
         /**
          * Hides all content sections and displays the specified section.
@@ -1989,7 +1982,7 @@
             hideAllModule1ContentAndDeactivateButtons();
             module1DefaultMessage.style.display = 'block';
             void module1DefaultMessage.offsetWidth;
-            module1DefaultMessage.classList.remove('active'); /* Ensure it starts hidden for smooth transition */
+            module1DefaultMessage.classList.add('active');
             module1ContentDisplay.classList.remove('content-display-expanded');
         });
 
@@ -2004,44 +1997,6 @@
             localStorage.setItem('module-logistics-basics-content-unlocked', 'true');
             updateModuleCardStates(); // Apply initial locked/unlocked states to module cards
             showSection('main-content', false); // Start by showing the main content without adding to history
-
-            // Add event listener for the edit mode toggle button
-            const editModeToggleBtn = document.getElementById('editModeToggleBtn');
-            editModeToggleBtn.addEventListener('click', () => {
-                isEditingMode = !isEditingMode; // Toggle the editing mode flag
-                // Select all common text elements, but exclude buttons
-                const allTextElements = document.querySelectorAll('h1, h2, h3, h4, p, li, td, th, a, input[type="text"], select');
-
-                allTextElements.forEach(element => {
-                    // Exclude specific elements from being editable
-                    if (element.id === 'termInput' || element.id === 'explainTermBtn' || element.id === 'loadingIndicator' || element.id === 'errorOutput' || element.id === 'editModeToggleBtn') {
-                        return; // Skip these elements
-                    }
-                    if (isEditingMode) {
-                        element.setAttribute('contenteditable', 'true');
-                        element.style.border = '1px dashed #4a90e2'; /* Add a visual border for editable elements */
-                        element.style.padding = '2px';
-                    } else {
-                        element.removeAttribute('contenteditable');
-                        element.style.border = 'none';
-                        element.style.padding = '0';
-                    }
-                });
-
-                // Update button text to reflect current mode
-                if (isEditingMode) {
-                    editModeToggleBtn.textContent = 'Disable Edit Mode';
-                    editModeToggleBtn.classList.remove('bg-gray-600');
-                    editModeToggleBtn.classList.add('bg-red-600');
-                } else {
-                    editModeToggleBtn.textContent = 'Enable Edit Mode';
-                    editModeToggleBtn.classList.remove('bg-red-600');
-                    editModeToggleBtn.classList.add('bg-gray-600');
-                }
-            });
-
-            // Make the hidden button visible (for demonstration purposes)
-            editModeToggleBtn.classList.remove('hidden');
         });
     </script>
 </body>
