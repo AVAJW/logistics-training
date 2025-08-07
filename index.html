@@ -531,6 +531,14 @@
                     </p>
                 </div>
 
+                <!-- Module Card: Module 5.5: Quotes in LAVA -->
+                <div id="module-5-5-card" class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card" data-target-module="module5-5-content" data-module-index="5.5">
+                    <h3 class="text-2xl font-semibold text-orange-400 mb-3">💻 Module 5.5: Quotes in LAVA</h3>
+                    <p class="text-gray-300">
+                        A closer look at how to manage quotes directly within the LAVA system.
+                    </p>
+                </div>
+
                 <!-- Module Card: Module 6: Covering Pending Loads -->
                 <div id="module-6-card" class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer module-card" data-target-module="module6-content" data-module-index="6">
                     <h3 class="text-2xl font-semibold text-cyan-400 mb-3">✅ Module 6: Covering Pending Loads</h3>
@@ -751,7 +759,7 @@
                 <span class="text-teal-400 text-2xl font-bold mr-2">💰</span>
                 <h3 class="text-2xl font-semibold text-gray-100">How AVA Makes Money</h3>
             </div>
-            <p class="text-lg text-gray-300 mb-4">
+            <p class="text-lg text-gray-300 mb-4 leading-relaxed">
                 As a broker, our profit comes from the spread between:
             </p>
             <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
@@ -1109,7 +1117,7 @@
             <li>Start low! (Ex. If the target rate in the load says $1000, start at $800 - you may get lucky)</li>
             <li>End with an odd number. (Ex. “I only have $936 in this load”) it sometimes works in unexpected ways.</li>
             <li>Say a rate, then stop talking. Let the carrier respond. This can force the carrier to negotiate with themselves and get you a better price.</li>
-            <li>Be confident. “The load IS paying X” not “I am trying to be around X”. Negotiate like you are willing to walk away, even if you are not (don’t lose the carrier if you really need them). If they know you need them you are not negotiating from a position of strength, thus losing money right off the bat.</li>
+            <li>Be confident. “The load IS paying X” not “I am trying to be around X”. Negotiate like you are willing to walk away, even if you are not (don’t lose the carrier if you really really need them). If they know you need them you are not negotiating from a position of strength, thus losing money right off the bat.</li>
             <li>Know the load details (this will help with confidence). Sell the best load details (Ex. It’s light. The Receiver’s open 24/7. No driver touch. We have a reload coming out of that area.)</li>
             <li>Learn as you go. Identify objections (weather, location, etc) and address them on the next call before the carrier brings it up. (Ex. Hello, I have a load from Reno to Sac. It’s snowing over the pass a bit, so I have a little extra on the rate to help your driver out. We’re at $800.) This will put you in a position of strength from the start.</li>
             <li>Don’t immediately settle when you hear your price on a call in!!! (Ex. If you want to pay $1000 on a load and a carrier calls in and says “I’ll run this for a thousand”, say “We’re at $800.” Don’t lose the truck over this, but always take a shot at a better price).</li>
@@ -1145,6 +1153,57 @@
             <li>Expanding filters. When searching for trucks don’t limit yourself to 100-150 miles. We have deadheaded trucks 1000+ miles before.</li>
         </ul>
         <!-- Navigation buttons for Module 5 -->
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="goBack()" class="bg-gray-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300 shadow-lg">
+                Back to Previous Module
+            </button>
+            <button onclick="showSection('module5-5-content');" class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg">
+                Go to Module 5.5
+            </button>
+        </div>
+    </section>
+
+    <!-- Module 5.5 Content Section (Initially Hidden): Detailed content for "Quotes in LAVA" module -->
+    <section id="module5-5-content" class="container mx-auto p-6 my-8 bg-gray-800 rounded-lg shadow-lg hidden border-t-4 border-orange-500">
+        <div class="flex items-center justify-center mb-4">
+            <span class="text-orange-400 text-xl font-bold mr-2">💻</span>
+            <h2 class="text-4xl font-bold text-orange-500 text-center">Module 5.5: Quotes in LAVA</h2>
+        </div>
+        <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+            This module focuses on the practical steps of managing quotes directly within the LAVA system.
+        </p>
+        <ol class="list-decimal list-inside text-gray-300 mb-6 space-y-2 pl-4">
+            <li>First, go to the <strong>Quotes tab</strong> in LAVA.</li>
+            <img src="http://googleusercontent.com/file_content/1" alt="LAVA Quotes Tab Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">You will see a list of existing quotes. You can search or filter the existing quotes to find the quote you’re looking for, or create a new quote.</li>
+            <img src="http://googleusercontent.com/file_content/2" alt="LAVA Existing Quotes List Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <img src="http://googleusercontent.com/file_content/3" alt="LAVA Search and Filter Options Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">To create a new quote, select <strong>New Quote</strong>.</li>
+            <li class="mt-4">Fill out the information in the <strong>details section</strong>.</li>
+            <img src="http://googleusercontent.com/file_content/4" alt="Details Section Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Note that some information will auto fill, such as the Customer/Lead, and the associated salesperson.</li>
+            <img src="http://googleusercontent.com/file_content/5" alt="Auto Fill Example Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Not all fields are required to create a quote, but you should have at least the <strong>Type, Mode, Weight, and Items</strong>. Leave the <strong>Status as In Progress</strong> when you initially create the quote.</li>
+            <li class="mt-4">The <strong>Notes section</strong> is for any extra information needed for the load.</li>
+            <img src="http://googleusercontent.com/file_content/6" alt="Notes Section Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Next enter the <strong>Pickup and Delivery information</strong>.</li>
+            <img src="http://googleusercontent.com/file_content/7" alt="Pickup Section Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Note that not all fields are required. At a minimum you should enter the <strong>city and state for each stop</strong>.</li>
+            <li class="mt-4">When complete, select <strong>Save or Save & Exit</strong> to complete creating the quote.</li>
+            <img src="http://googleusercontent.com/file_content/8" alt="Save and Save & Exit Buttons Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">To enter rates, first enter the desired quote by selecting it from the existing quotes.</li>
+            <img src="http://googleusercontent.com/file_content/9" alt="Enter Rate Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Once inside the quote, you will see the information you need to talk to carriers and get rates. To enter a new rate, scroll to the bottom and click <strong>Add New Rate</strong>.</li>
+            <img src="http://googleusercontent.com/file_content/10" alt="Add New Rate Button Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Fill out the blank fields in this section.</li>
+            <img src="http://googleusercontent.com/file_content/11" alt="Fill Out Blanks Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Note that not all fields are required, but at a minimum you should enter the <strong>Rate, MC, Dispatch Name, and Carrier Phone</strong> fields for each quote. When you finish entering the information, click the <strong>Save</strong> button to save the quote.</li>
+            <img src="http://googleusercontent.com/file_content/12" alt="Save Button Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Get three rates to complete the quote, unless stated otherwise. When you finish all three, change the status to <strong>Completed</strong>.</li>
+            <img src="http://googleusercontent.com/file_content/13" alt="Completed Status Screenshot" class="mt-4 rounded-lg shadow-md max-w-full h-auto">
+            <li class="mt-4">Click <strong>Save & Exit</strong> to leave the quote.</li>
+        </ol>
+        <!-- Navigation buttons for Module 5.5 -->
         <div class="text-center mt-8 space-x-4">
             <button onclick="goBack()" class="bg-gray-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300 shadow-lg">
                 Back to Previous Module
@@ -1645,39 +1704,6 @@
             </div>
         </div>
 
-        <h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-3 border-b pb-2 border-gray-700">Average Equipment Dimensions:</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <!-- Equipment dimensions -->
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Flatbed</h4>
-                <p class="text-gray-300">48’ or 53’ long, 8.5’ tall and wide, and 48,000lb max load</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Step Deck</h4>
-                <p class="text-gray-300">48’ or 53’ long, 8.5’ wide, 8.5’ to 10’ tall (lower deck vs upper deck) and 46,000lb max load</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Dry Van</h4>
-                <p class="text-gray-300">48’ or 53’ long, 102” wide, 110” tall, and 45,000lb max load (keep to 44,000lb)</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Reefer</h4>
-                <p class="text-gray-300">48’ or 53’ long, 98” wide, 100” tall, and 43,000lb max load</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Box Truck</h4>
-                <p class="text-gray-300">16’ to 26’ long, 96” - 100” wide, 90” - 102” tall at door, and 7,000-14,000 max load (dimensions vary by truck), avg 10,000lbs.</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Sprinter Van</h4>
-                <p class="text-gray-300">10’ or 16’ long, 50” wide, 72” tall, and 2,000lb max load</p>
-            </div>
-            <div class="p-4 bg-gray-700 rounded-lg border border-gray-600">
-                <h4 class="text-xl font-semibold text-gray-100 mb-2">Hot Shot</h4>
-                <p class="text-gray-300">25’ to 40’ long, 6’ to 8.5’ wide, 10’ tall, and varying max loads from 7,000lb to 21,000lb, avg 15,000lbs.</p>
-            </div>
-        </div>
-
         <!-- Navigation buttons for Module 11 -->
         <div class="text-center mt-8 space-x-4">
             <button onclick="goBack()" class="bg-gray-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300 shadow-lg">
@@ -1717,7 +1743,7 @@
             const sections = [
                 'main-content', 'logistics-basics-content', 'module1-content',
                 'module2-content', 'module3-content', 'module4-content',
-                'module5-content', 'module6-content', 'module7-content',
+                'module5-content', 'module5-5-content', 'module6-content', 'module7-content',
                 'module8-content', 'module9-content', 'module10-content',
                 'module11-content'
             ];
